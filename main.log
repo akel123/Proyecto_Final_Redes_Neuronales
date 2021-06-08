@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.22 (MiKTeX 21.6) (preloaded format=pdflatex 2021.6.8)  8 JUN 2021 15:38
+This is pdfTeX, Version 3.141592653-2.6-1.40.22 (MiKTeX 21.6) (preloaded format=pdflatex 2021.6.8)  8 JUN 2021 17:28
 entering extended mode
 **/Users/aaronkelley/Documents/Academic/School/UNAM/Semestre2/Redes/ProyectoFinal/writeup/main.tex
 (/Users/aaronkelley/Documents/Academic/School/UNAM/Semestre2/Redes/ProyectoFinal/writeup/main.tex
@@ -690,13 +690,13 @@ Package logreq Info: Writing requests to 'main.run.xml'.
 Here is how much of TeX's memory you used:
  18927 strings out of 480799
  324509 string characters out of 2897779
- 1065318 words of memory out of 3000000
+ 1065345 words of memory out of 3000000
  36324 multiletter control sequences out of 15000+600000
  414020 words of font info for 66 fonts, out of 8000000 for 9000
  0 hyphenation exceptions out of 8191
  71i,5n,80p,825b,1763s stack positions out of 5000i,500n,10000p,200000b,80000s
 </Users/aaronkelley/Library/Application Support/MiKTeX/texmfs/install/fonts/type1/public/amsfonts/cm/cmbx12.pfb></Users/aaronkelley/Library/Application Support/MiKTeX/texmfs/install/fonts/type1/public/amsfonts/cm/cmcsc10.pfb></Users/aaronkelley/Library/Application Support/MiKTeX/texmfs/install/fonts/type1/public/amsfonts/cm/cmr12.pfb></Users/aaronkelley/Library/Application Support/MiKTeX/texmfs/install/fonts/type1/public/amsfonts/cm/cmr17.pfb></Users/aaronkelley/Library/Application Support/MiKTeX/texmfs/install/fonts/type1/public/amsfonts/cm/cmsl12.pfb></Users/aaronkelley/Library/Application Support/MiKTeX/texmfs/install/fonts/type1/public/amsfonts/cm/cmti12.pfb></Users/aaronkelley/Library/Application Support/MiKTeX/texmfs/install/fonts/type1/public/amsfonts/cm/cmtt12.pfb>
-Output written on main.pdf (5 pages, 254785 bytes).
+Output written on main.pdf (5 pages, 255389 bytes).
 PDF statistics:
  78 PDF objects out of 1000 (max. 8388607)
  10 named destinations out of 1000 (max. 500000)

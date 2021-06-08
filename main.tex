@@ -1,0 +1,56 @@
+% ! TeX program = pdflatex
+
+% PACKAGES
+\documentclass[12pt,oneside, a4paper]{book}
+\usepackage[utf8]{inputenc}
+\usepackage{commath, amsmath,amssymb,amsthm,mathtools,mathrsfs}
+\usepackage[spanish]{babel}
+\usepackage{setspace}
+\usepackage{footnote}
+\usepackage{minipage-marginpar}
+\usepackage{dashbox}
+\usepackage{dsfont}
+\usepackage{hyperref}
+\usepackage{bm}
+\usepackage{indentfirst}
+\usepackage{titlesec}
+\usepackage{biblatex}
+\addbibresource{bibliography.bib}
+
+
+
+
+% COMMANDS
+\newcommand{\HRule}{\rule{\linewidth}{0.5mm}}
+
+
+\begin{document}
+    
+
+
+\input{sections/titlepage.tex}
+
+\section*{Abstract}
+\input{sections/abstract.tex}
+
+\tableofcontents
+
+
+
+
+
+\section{Introducción}
+\cite{einstein}
+
+
+
+
+\printbibliography
+
+
+
+
+
+\end{document}
+
+

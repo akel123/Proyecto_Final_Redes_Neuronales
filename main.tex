@@ -1,7 +1,8 @@
-\documentclass[12pt]{book}
+\documentclass{article}
 \usepackage[utf8]{inputenc}
+\usepackage[left=1in,top=1in,right=1in,bottom=1in,bindingoffset=0cm]{geometry}
 \usepackage{commath, amsmath,amssymb,amsthm,mathtools,mathrsfs}
-\usepackage[english]{babel}
+\usepackage[spanish]{babel}
 \usepackage{setspace}
 \usepackage{footnote}
 \usepackage{minipage-marginpar}
@@ -12,7 +13,8 @@
 \usepackage{indentfirst}
 \usepackage{titlesec}
 \usepackage{csquotes}
-% \usepackage{polyglossia}
+\usepackage{minipage-marginpar}
+\usepackage{multicol}
 \usepackage[backend=biber]{biblatex}
 \addbibresource{bibliography.bib}
 
@@ -28,23 +30,15 @@
 
 
 \input{sections/titlepage.tex}
-
-\section*{Abstract}
 \input{sections/abstract.tex}
-
 \tableofcontents
+\input{sections/introduction.tex}
 
 
 
 
 
-\section{Introducción}
-example citation \cite{shaham2018defending}
-
-
-
-
-
+\pagebreak
 \printbibliography
 
 

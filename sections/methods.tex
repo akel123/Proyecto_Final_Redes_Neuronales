@@ -8,7 +8,7 @@
 \subsubsection{Fast Gradient Method}
 \cite{goodfellow2015explaining, maybe more}
 
-Sean $\theta$ los parametros de un modelo, $x$ la entrada, $y$ las salidas asociadas, y $J(\theta, x, y)$ la función de costo. La función de costo se lineariza alrededor del valor actual de $\theta$. Sea $\epsilon \in \mathbb{R}^+$. Definamos la imagen adversaria 
+Sean $\theta$ los parámetros de un modelo, $x$ la entrada, $y$ las salidas asociadas, y $J(\theta, x, y)$ la función de costo. La función de costo se lineariza alrededor del valor actual de $\theta$. Sea $\epsilon \in \mathbb{R}^+$. Definamos la imagen adversaria 
 \[\tilde{x} = x + \epsilon \eta_{\text{opt}}\]
 Se puede definir $\eta_{\text{opt}}$ por el problema de optimización
 \[\eta_{\text{opt}} = \operatornamewithlimits{argmax}_{\eta}\left\{ \operatorname{grad} ^\top \eta: \norm{\eta}_p< \epsilon\right\}\]

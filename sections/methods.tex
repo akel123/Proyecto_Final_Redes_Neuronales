@@ -30,7 +30,10 @@ El tamaño de estas imágenes en blanco y negro fue normalizado a una caja de 20
 \end{figure}
 
 \subsubsection{CIFAR-10}
-\cite{Krizhevsky09learningmultiple}
+Los grupos del MIT y la NYU recopilaron un conjunto de millones de diminutas imágenes en color de la web. Se trata de un excelente conjunto de datos para el entrenamiento no supervisado de modelos generativos profundos, pero los investigadores anteriores que lo han intentado han encontrado difícil aprender un buen conjunto de filtros a partir de las imágenes.
+Mostramos cómo entrenar un modelo generativo de múltiples capas que aprende a extraer características significativas que se asemejan a las que se encuentran en la corteza visual humana. Utilizando un novedoso algoritmo de paralelización para distribuir el trabajo entre varias máquinas conectadas en una red, mostramos cómo se puede entrenar dicho modelo en un tiempo razonable.
+Un segundo aspecto problemático del conjunto de datos de imágenes diminutas es que no hay etiquetas de clase confiables, lo que dificulta su uso para experimentos de reconocimiento de objetos. Creamos dos juegos de etiquetas confiables.
+El conjunto CIFAR-10 tiene 6000 ejemplos de cada una de las 10 clases y el conjunto CIFAR-100 tiene 600 ejemplos de cada una de las 100 clases que no se superponen. Usando estas etiquetas, mostramos que el reconocimiento de objetos se mejora significativamente al entrenar previamente una capa de características en un gran conjunto de imágenes diminutas sin etiquetar.\cite{Krizhevsky09learningmultiple}
 
 
 \subsection{Ataques}

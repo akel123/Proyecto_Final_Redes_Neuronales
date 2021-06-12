@@ -8,7 +8,7 @@ La base de datos MNIST es un compendio de los dígitos del 0 al 9 en letra manus
 
 De las 10,000 imágenes de evaluación, la mitad fueron escritas por estudiantes de preparatoria y la otra mitad por empleados de la oficina de censos, mientras que de las 60,000 imágenes de entrenamiento, 58,527 de los números fueron escritos por 500 estudiantes y el resto por los empleados.
 
-El tamaño de estas imágenes en blanco y negro fue normalizado a una caja de 20x20 pixeles y se colocó su centro de masa en un campo de 28x28 \cite{lecun2010mnist}. En la Figura \ref{mnist} se muestran algunos ejemplos de estas imágenes.
+El tamaño de estas imágenes en blanco y negro fue normalizado a una caja de 20$\times$20 pixeles y se colocó su centro de masa en un campo de 28$\times$28 \cite{lecun2010mnist}. En la Figura \ref{mnist} se muestran algunos ejemplos de estas imágenes.
 
 \begin{figure}[h]
     \centering
@@ -32,7 +32,30 @@ El tamaño de estas imágenes en blanco y negro fue normalizado a una caja de 20
 \subsubsection{CIFAR-10}
 Los grupos del MIT y la NYU recopilaron un conjunto de millones de diminutas imágenes en color de la web, se trata de un excelente conjunto de datos para el entrenamiento no supervisado de modelos generativos profundos. Se crearon dos juegos de etiquetas confiables: el conjunto CIFAR-10, que tiene 6000 ejemplos de cada una de 10 clases y el conjunto CIFAR-100, que tiene 600 ejemplos de cada una de 100 clases que no se superponen. Usando estas etiquetas, se mostró que el reconocimiento de objetos mejora significativamente al entrenar previamente una capa de características en un gran conjunto de imágenes diminutas sin etiquetar.
 
-Lo ensamblaron buscando en la web imágenes de cada sustantivo en inglés no abstracto en la base de datos léxica WordNet. Utilizaron varios motores de búsqueda, incluidos Google, Flickr y Altavista y mantuvieron aproximadamente los primeros 3000 resultados para cada término de búsqueda. Después de recopilar todas las imágenes para un término de búsqueda en particular, eliminaron duplicados perfectos e imágenes en las que una parte excesivamente grande de los píxeles eran blancos, ya que tendían a ser figuras sintéticas en lugar de imágenes naturales. El término de búsqueda utilizado para encontrar una imagen le proporciona una etiqueta aproximada, aunque es extremadamente poco confiable debido a la naturaleza de la tecnología de búsqueda de imágenes en línea. En total, el conjunto de datos contiene 80 millones de imágenes en color reducidas a 32 × 32 y distribuidas en 79000 términos de búsqueda. La mayoría de nuestros experimentos con aprendizaje no supervisado se realizaron en un subconjunto de aproximadamente 2 millones de imágenes \cite{Krizhevsky09learningmultiple}.
+Esta base de datos fue ensamblada buscando en la web imágenes de cada sustantivo en inglés no abstracto en la base de datos léxica WordNet. Utilizaron varios motores de búsqueda, incluidos Google, Flickr y Altavista y mantuvieron aproximadamente los primeros 3000 resultados para cada término de búsqueda. Después de recopilar todas las imágenes para un término de búsqueda en particular, eliminaron duplicados perfectos e imágenes en las que una parte excesivamente grande de los píxeles eran blancos, ya que tendían a ser figuras sintéticas en lugar de imágenes naturales. El término de búsqueda utilizado para encontrar una imagen le proporciona una etiqueta aproximada, aunque es extremadamente poco confiable debido a la naturaleza de la tecnología de búsqueda de imágenes en línea. En total, el conjunto de datos contiene 80 millones de imágenes en color reducidas a 32×32 y distribuidas en 79,000 términos de búsqueda \cite{Krizhevsky09learningmultiple}.
+
+\begin{figure}[h!]
+    \centering
+    \includegraphics[width=0.71\textwidth]{images/cifar10-3.0.2.png}
+    \caption{Algunas imágenes del conjunto de CIFAR-10 \cite{Krizhevsky09learningmultiple}}
+    \label{cifar}
+\end{figure}
+
+El conjunto de datos se divide en cinco lotes de entrenamiento y un lote de prueba, cada uno con 10,000 imágenes. El lote de prueba contiene exactamente 1000 imágenes seleccionadas al azar de cada clase. Los lotes de entrenamiento contienen las imágenes restantes en orden aleatorio, pero algunos lotes de entrenamiento pueden contener más imágenes de una clase que de otra. Entre ellos, los lotes de entrenamiento contienen exactamente 5000 imágenes de cada clase \cite{cifarsite}. Las clases son:
+\begin{multicols}{5}
+\begin{enumerate}
+    \item airplane
+    \item automobile
+    \item bird
+    \item cat
+    \item deer
+    \item dog
+    \item frog
+    \item horse
+    \item ship
+    \item truck
+\end{enumerate}
+\end{multicols}
 
 
 \subsection{Ataques}

@@ -3,6 +3,17 @@
     \item Show graphs of jpeg defense vs epsilon of each attack 
     \item over parameterization and overfitting contributing
     \begin{itemize}
-        \item here they suggest overparameterization contributes to sharp gradient landscape \cite{ma2020understanding}
+        \item here they suggest overparameterization contributes to sharp gradient landscape \cite{ma2020understanding}...we find the opposite
+        \begin{enumerate}
+            \item try overparameterization
+            \item try overfitting 
+            \item fix a large overparameterization and see if overfitting has the same effect
+            \item pick an overparameterization and overfitting and check jpeg
+        \end{enumerate}
+    \end{itemize}
+    \item Saliency
+    \begin{itemize}
+        \item show figures from notebook of how adversarial noise attacks parts of the image that seem vulnerable (for example changing a 3$\to$8)
+        \item Show Gradient-based localization of both imiage sets and how they change after adding adversarial noise\cite{Selvaraju_2019}
     \end{itemize}
 \end{itemize}

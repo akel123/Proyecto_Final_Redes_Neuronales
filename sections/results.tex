@@ -1,20 +1,41 @@
 \section{Resultados}
-\subsection{¿Que hace la defensa JPEG?}
+\subsection{Las Redes como un Filtro}
 \begin{itemize}
-    \item Show graphs of jpeg defense vs epsilon of each attack 
-    \item over parameterization and overfitting contributing
-    \begin{itemize}
-        \item here they suggest overparameterization contributes to sharp gradient landscape \cite{ma2020understanding}...we find the opposite
-        \begin{enumerate}
-            \item try overparameterization
-            \item try overfitting 
-            \item fix a large overparameterization and see if overfitting has the same effect
-            \item pick an overparameterization and overfitting and check jpeg
-        \end{enumerate}
-    \end{itemize}
-    \item Saliency
-    \begin{itemize}
-        \item show figures from notebook of how adversarial noise attacks parts of the image that seem vulnerable (for example changing a 3$\to$8)
-        \item Show Gradient-based localization of both imiage sets and how they change after adding adversarial noise\cite{Selvaraju_2019}
-    \end{itemize}
+    \item Bode Diagrams
+\end{itemize}
+\subsection{¿Que Hace la Defensa JPEG?}
+\begin{itemize}
+    \item Intuition: JPEG removes noise that humans can't see
+    \item Show graphs of jpeg defense vs epsilon of each attack
+    \item bode diagrams with jpeg conversion as first layer
+\end{itemize}
+\subsection{Los Efectos de Overfitting y Overparameterization}
+\begin{itemize}
+    \item here they suggest overparameterization contributes to sharp gradient landscape \cite{ma2020understanding}...we find the opposite
+    \begin{figure}[h]
+        \centering
+        \begin{subfigure}[b]{0.49\textwidth}
+            \centering
+            \includegraphics[width=\textwidth]{images/overfit_vs_attack.png}
+            \caption{overfitting}
+            \label{overfit}
+        \end{subfigure}
+        \begin{subfigure}[b]{0.49\textwidth}
+            \centering
+            \includegraphics[width=\textwidth]{images/overparam_vs_attack.png}
+            \caption{overparameterization}
+            \label{mnist2}
+        \end{subfigure}
+        \caption{Efectos}
+        \label{overparam}
+    \end{figure}
+    
+    \item fix a large overparameterization and see if overfitting has the same effect
+    \item pick an overparameterization and overfitting and check jpeg
+
+\end{itemize}
+\subsection{Saliency}
+\begin{itemize}
+    \item show figures from notebook of how adversarial noise attacks parts of the image that seem vulnerable (for example changing a 3$\to$8)
+    \item Show Gradient-based localization of both imiage sets and how they change after adding adversarial noise\cite{Selvaraju_2019}
 \end{itemize}

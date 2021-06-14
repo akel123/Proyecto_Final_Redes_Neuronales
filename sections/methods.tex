@@ -10,24 +10,83 @@ De las 10,000 imágenes de evaluación, la mitad fueron escritas por estudiantes
 
 El tamaño de estas imágenes en blanco y negro fue normalizado a una caja de 20$\times$20 pixeles y se colocó su centro de masa en un campo de 28$\times$28 \cite{lecun2010mnist}. En la Figura \ref{mnist} se muestran algunos ejemplos de estas imágenes.
 
-\begin{figure}[h]
+\begin{figure}[h!]
     \centering
     \begin{subfigure}[b]{0.4\textwidth}
         \centering
-        \includegraphics[width=\textwidth]{images/MNIST.png}
+        \includegraphics[width=\textwidth]{images/mnist/MNIST.png}
         \caption{Algunas imágenes del conjunto de evaluación de la base de datos MNIST \cite{Lecun98}.}
         \label{mnist1}
     \end{subfigure}
     \hspace{1cm}
     \begin{subfigure}[b]{0.45\textwidth}
         \centering
-        \includegraphics[width=\textwidth]{images/MNISTmiscl.png}
+        \includegraphics[width=\textwidth]{images/mnist/MNISTmiscl.png}
         \caption{82 imágenes de evaluación que LeNet-5 clasificó erróneamente \cite{Lecun98}.}
         \label{mnist2}
     \end{subfigure}
     \caption{Imágenes de MNIST.}
     \label{mnist}
 \end{figure}
+
+\begin{figure}[h!]
+    \centering
+    \begin{subfigure}[b]{0.45\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{images/mnist/mnist_train_first50.png}
+        \caption{Primeras 50 imágenes de MNIST con sus respectivas etiquetas.}
+        \label{mnist3}
+    \end{subfigure}
+    \hspace{1cm}
+    \begin{subfigure}[b]{0.45\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{images/mnist/mnist_train_random.png}
+        \caption{50 imágenes aleatorias de MNIST con sus respectivas etiquetas.}
+        \label{mnist4}
+    \end{subfigure}
+    \caption{Imágenes del conjunto de entrenamiento (train) de MNIST.}
+    \label{mnist_}
+\end{figure}
+
+\begin{figure}[h!]
+    \centering
+    \begin{subfigure}[b]{0.45\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{images/mnist/mnist_test_first50.png}
+        \caption{Primeras 50 imágenes de MNIST con sus respectivas etiquetas.}
+        \label{mnist5}
+    \end{subfigure}
+    \hspace{1cm}
+    \begin{subfigure}[b]{0.45\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{images/mnist/mnist_test_random.png}
+        \caption{50 imágenes aleatorias de MNIST con sus respectivas etiquetas.}
+        \label{mnist6}
+    \end{subfigure}
+    \caption{Imágenes del conjunto de evaluación (test) de MNIST.}
+    \label{mnist_test}
+\end{figure}
+
+\begin{figure}[h!]
+    \centering
+    \begin{subfigure}[b]{0.45\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{images/mnist/dist_train.png}
+        \caption{Distribución de los dígitos en el conjunto de entrenamiento de MNIST.}
+        \label{mnist7}
+    \end{subfigure}
+    \hspace{1cm}
+    \begin{subfigure}[b]{0.45\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{images/mnist/dist_test.png}
+        \caption{Distribución de los dígitos en el conjunto de evaluación de MNIST.}
+        \label{mnist8}
+    \end{subfigure}
+    \caption{Distribución de los dígitos en MNIST.}
+    \label{mnist_dist}
+\end{figure}
+
+La distribución de los dígitos en MNIST no es homogénea, como puede observarse en la Figura \ref{mnist_dist}.
 
 \subsubsection{CIFAR-10}
 Los grupos del MIT y la NYU recopilaron un conjunto de millones de diminutas imágenes en color de la web, se trata de un excelente conjunto de datos para el entrenamiento no supervisado de modelos generativos profundos. Se crearon dos juegos de etiquetas confiables: el conjunto CIFAR-10, que tiene 6000 ejemplos de cada una de 10 clases y el conjunto CIFAR-100, que tiene 600 ejemplos de cada una de 100 clases que no se superponen. Usando estas etiquetas, se mostró que el reconocimiento de objetos mejora significativamente al entrenar previamente una capa de características en un gran conjunto de imágenes diminutas sin etiquetar.
@@ -36,7 +95,7 @@ Esta base de datos fue ensamblada buscando en la web imágenes de cada sustantiv
 
 \begin{figure}[h!]
     \centering
-    \includegraphics[width=\textwidth]{images/cifar10example.png}
+    \includegraphics[width=\textwidth]{images/cifar-10/cifar10example.png}
     \caption{Algunas imágenes del conjunto de CIFAR-10 \cite{Krizhevsky09learningmultiple}}
     \label{cifar}
 \end{figure}
@@ -65,7 +124,7 @@ Las 10 clases de CIFAR-10 se encuentran en orden alfabético y son:
 \subsubsection{Fast Gradient Method}
 \cite{goodfellow2015explaining, maybe more}
 
-Sean $\theta$ los parámetros de un modelo, $x$ la entrada, $y$ las salidas asociadas, y $J(\theta, x, y)$ la función de costo. La función de costo se lineariza alrededor del valor actual de $\theta$. Sea $\epsilon \in \mathbb{R}^+$. Definamos la imagen adversaria 
+Sean $\theta$ los parámetros de un modelo, $x$ la entrada, $y$ las salidas asociadas, y $J(\theta, x, y)$ la función de costo. La función de costo se linealiza alrededor del valor actual de $\theta$. Sea $\epsilon \in \mathbb{R}^+$. Definamos la imagen adversaria 
 \[\tilde{x} = x + \epsilon \eta_{\text{opt}}\]
 Se puede definir $\eta_{\text{opt}}$ por el problema de optimización
 \[\eta_{\text{opt}} = \operatornamewithlimits{argmax}_{\eta}\left\{ \operatorname{grad} ^\top \eta: \norm{\eta}_p< \epsilon\right\}\]
@@ -83,5 +142,12 @@ Donde $p \in \mathbb{N} \cup \{\infty\}$ y $\operatorname{grad} = \nabla_x J(\th
 
 \subsection{Defensas}
 
-\subsubsection{Compresión JPEG }
-\cite{das2017keeping}
+\subsubsection{Compresión JPEG}
+JPEG es una compresión con pérdida que utiliza la transformada discreta del coseno (DCT) y normalmente elimina muchos componentes de alta frecuencia, a los que la percepción humana es menos sensible \cite{das2017keeping, shaham2018defending}. Consta de los siguientes pasos:
+\begin{enumerate}
+    \item Conversión de la imagen de formato RGB a formato YC$_b$C$_r$, donde el canal Y representa luminancia y los canales C$_b$ y C$_r$ representan crominancia. Esto está hecho porque el sistema visual humano se basa más en el contenido espacial y la agudeza que en el color para la interpretación.
+    \item Submuestreo espacial de los canales de crominancia en el espacio YC$_b$C$_r$: el ojo humano es mucho más sensible a los cambios de luminancia, y reducir la muestra de la información de crominancia no afecta mucho la percepción del ser humano de la imagen.
+    \item Dividir la imagen en bloques de 8 $\times$ 8 y aplicar DCT en 2D a cada bloque. Esto se hace para cada canal por separado. Este paso produce mayor compresión de los datos de la imagen.
+    \item Cuantificación de las amplitudes de frecuencia, lograda dividiendo cada término de frecuencia por una constante (diferente) y redondeándola al número entero más cercano. Como resultado, muchos componentes de alta frecuencia generalmente se establecen en cero y otros se reducen. La cantidad de compresión se rige por un parámetro de calidad especificado por el usuario, que define la reducción en la resolución. Aquí es donde el algoritmo JPEG logra la mayor parte de la compresión, a expensas de la calidad de la imagen. Este paso suprime más las frecuencias más altas, ya que estos coeficientes contribuyen menos a la percepción humana de la imagen.
+    \item Compresión sin pérdidas de los datos del bloque.
+\end{enumerate}

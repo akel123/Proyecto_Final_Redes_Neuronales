@@ -46,6 +46,10 @@
         \label{overaparam_overfit}
     \end{figure}
     
+    En la Figura \ref{overfit} se observa que conforme aumentamos el número de épocas (epochs), la precisión (accuracy) aumenta con respecto a cada épsilon, excepto para 200 épocas, cuya precisión es menor que la de 100 épocas, e incluso menor que la de 50 épocas para épsilon $>$ 0.5. Aumentar el número de épocas implica un sobreajuste (overfitting) de la red neuronal, lo cual significa que...
+    
+    En la figura \ref{overparam} se observa que conforme aumentamos el número de capas (layers), la precisión aumenta, excepto para 4 y 10 capas adicionales. Nótese que para épsilon $>$ 0.8, la red con 6 capas adicionales tuvo el mejor desempeño. Aumentar el número de capas implica una sobreparametrización (overparameterization) de la red neuronal, lo cual significa que...
+    
     \item fix a large overparameterization and see if overfitting has the same effect
     \item pick an overparameterization and overfitting and check jpeg
 

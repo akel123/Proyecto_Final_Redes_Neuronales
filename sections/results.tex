@@ -1,30 +1,69 @@
 \section{Resultados}
-\subsection{Las Redes como un Filtro}
+\subsection{Las redes neuronales como un filtro}
 \begin{itemize}
     \item Bode Diagrams
 \end{itemize}
-\subsection{¿Que Hace la Defensa JPEG?}
+\subsection{¿Qué hace la defensa de JPEG?}
+
+Como vimos en la sección de compresión JPEG, cuando esta es aplicada a una imagen que ha sido sometida a un ataque adversario, los componentes de alta frecuencia se eliminan y, así como los humanos percibimos en menor medida dichos componentes, es posible que la red no logre distinguir el ataque perpetrado sobre la imagen, esto debido a que los ataques suelen tratarse de pequeñas cantidades de ruido o distorsión introducidos en la imagen y, al reducir la calidad de la misma, la red tiene más probabilidades de recuperar la clasificación original de la imagen.
+
+En la Figura \ref{jpeg_def} se muestra el resultado de nuestro entrenamiento de las redes LeNet y ResNet utilizando MNIST y el ataque FGSM para distintos niveles de compresión JPEG como defensa. Se observa que, efectivamente, conforme aumenta la compresión (disminuye la calidad), la precisión (accuracy) en la clasificación de las imágenes por parte de la red es mayor.
+
 \begin{itemize}
     \item Intuition: JPEG removes noise that humans can't see
     \item Show graphs of jpeg defense vs epsilon of each attack
-    \begin{figure}[h]
-        \centering
-        \begin{subfigure}[b]{0.49\textwidth}
-            \centering
-            \includegraphics[width=\textwidth]{images/jpegdefense_vs_epsilon_linear.png}
-            \caption{LeNet}
-            \label{jpeg_def}
-        \end{subfigure}
-        \begin{subfigure}[b]{0.49\textwidth}
-            \centering
-            \includegraphics[width=\textwidth]{images/jpegdefense_vs_epsilon_nonlinear.png}
-            \caption{ResNet}
-            \label{jpeg_def}
-        \end{subfigure}
-        \caption{jpeg defense}
-    \end{figure}
-    \item bode diagrams with jpeg conversion as first layer
+    \item Bode diagrams with jpeg conversion as first layer
 \end{itemize}
+
+\begin{figure}[h]
+    \centering
+    \begin{subfigure}[b]{0.49\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{images/jpeg/jpegdefense_vs_epsilon_linear.png}
+        \caption{LeNet}
+    \end{subfigure}
+    \begin{subfigure}[b]{0.49\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{images/jpeg/jpegdefense_vs_epsilon_nonlinear.png}
+        \caption{ResNet}
+    \end{subfigure}
+    \caption{Resultado de la compresión JPEG como defensa ante el ataque FGSM sobre MNIST}
+    \label{jpeg_def}
+\end{figure}
+
+\begin{figure}[h]
+\centering
+\begin{subfigure}[t]{0.22\textwidth}
+\centering
+    \includegraphics[width=\textwidth]{images/jpeg/fgsm_Le.png}
+    \caption{Sin compresión JPEG}
+    \label{fgsm_jpeg}
+\end{subfigure}
+\hspace{1em}
+\begin{subfigure}[t]{0.22\textwidth}
+\centering
+    \includegraphics[width=\textwidth]{images/jpeg/fgsm_jpeg20_Le.png}
+    \caption{20\%}
+    \label{fgsm_jpeg}
+\end{subfigure}
+\hspace{1em}
+\begin{subfigure}[t]{0.22\textwidth}
+\centering
+    \includegraphics[width=\textwidth]{images/jpeg/fgsm_jpeg5_Le.png}
+    \caption{5\%}
+    \label{fgsm_jpeg}
+\end{subfigure}
+\hspace{1em}
+\begin{subfigure}[t]{0.22\textwidth}
+\centering
+    \includegraphics[width=\textwidth]{images/jpeg/fgsm_jpeg1_Le.png}
+    \caption{1\%}
+    \label{fgsm_jpeg1}
+\end{subfigure}
+\caption{Ruido del ataque FGSM para distintas calidades en la compresión JPEG}
+\label{Noise}
+\end{figure}
+
 \subsection{Los Efectos de Overfitting y Overparameterization}
 \begin{itemize}
     \item here they suggest overparameterization contributes to sharp gradient landscape \cite{ma2020understanding}...we find the opposite

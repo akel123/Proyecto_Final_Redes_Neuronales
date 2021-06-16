@@ -129,6 +129,7 @@ Sean $\theta$ los parámetros de un modelo, $x$ la entrada, $y$ las salidas asoc
 Se puede definir $\eta_{\text{opt}}$ por el problema de optimización
 \[\eta_{\text{opt}} = \operatornamewithlimits{argmax}_{\eta}\left\{ \operatorname{grad} ^\top \eta: \norm{\eta}_p< \epsilon\right\}\]
 Donde $p \in \mathbb{N} \cup \{\infty\}$ y $\operatorname{grad} = \nabla_x J(\theta, x, y)$. Experimentamos con dos valores de $p$:
+<<<<<<< HEAD
 % \begin{enumerate}
 %     \item[a)] $p = 2$,
 %     \[\eta_{\text{opt}} = \frac{\operatorname{grad}}{\norm{\operatorname{grad}}}\]
@@ -147,6 +148,15 @@ Donde $p \in \mathbb{N} \cup \{\infty\}$ y $\operatorname{grad} = \nabla_x J(\th
 %     \includegraphics[width=0.8\textwidth]{images/fgms_example.png}
 % \end{figure}
     
+=======
+\begin{enumerate}[a)]
+    \item $p = 2$,
+    \[\eta_{\text{opt}} = \frac{\operatorname{grad}}{\norm{\operatorname{grad}}}\]
+    \item $p = \infty$,
+    \[\eta_{\text{opt}} = \operatorname{sign}(\nabla_x J(\theta, x, y))\]
+\end{enumerate}
+>>>>>>> b0312c705a6531c6019176271deba17d6c19c997
+
 
 \subsubsection{Carlini \& Wagner}
 Nicholas Carlini y David Wagner \cite{carlini2017evaluating} propusieron en 2017 un método para encontrar ejemplos adversarios que tuvieran poca distorsión en la norma $L^2$. Dada $x$, se escoge una clase $t$ y se busca la $\omega$ que resuelva
@@ -159,7 +169,7 @@ con $f$ definida como
 \end{equation*}
 Esta $f$ está basada en una función objetivo en la que se controla la confianza con la que ocurre una clasificación errónea al ajustar el valor de $\kappa$. El parámetro $\kappa$ sugiere a quien esté resolviendo el problema encontrar una instancia adversaria $x'$ que sea clasificada con mucha confianza como la clase $t$. Ellos toman $\kappa = 0$. $Z(x)$ es el logit para $x$, es decir la pre-activación de la capa de salida softmax.
 
-En la Figura \ref{CW} se observa que el ataque es totalmente imperceptible para nosotros.
+En la Figura \ref{CW} se observa que el ataque es totalmente imperceptible para nosotros. Aunque este ataque puede ser dirigido, se usa de la forma no dirigida en este reporte. 
 
 \begin{figure}[h!]
     \centering
@@ -169,6 +179,29 @@ En la Figura \ref{CW} se observa que el ataque es totalmente imperceptible para 
 \end{figure}
 
 
+\begin{figure}[h!]
+    \centering
+    \begin{subfigure}[b]{0.55\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{images/fgms_example.png}
+        \caption{fgsm example}
+        \label{fgsm_example}
+    \end{subfigure}
+    \begin{subfigure}[b]{0.55\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{images/fgm_example.png}
+        \caption{fgm example}
+        \label{fgm_example}
+    \end{subfigure}
+    \begin{subfigure}[b]{0.55\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{images/CW_example.png}
+        \caption{CW example}
+        \label{CW_example}
+    \end{subfigure}
+    \label{attack_examples}
+    \caption{stuff}
+\end{figure}
 
 \subsection{Defensas}
 

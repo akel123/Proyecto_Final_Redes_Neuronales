@@ -78,34 +78,29 @@ En la Figura \ref{jpeg_def} se muestra el resultado de nuestro entrenamiento de 
 
 \subsection{Los efectos de Overfitting y Overparameterization}
 
-\begin{itemize}
-    \item here they suggest overparameterization contributes to sharp gradient landscape \cite{ma2020understanding}...we find the opposite
-    \begin{figure}[h]
+here they suggest overparameterization contributes to sharp gradient landscape \cite{ma2020understanding}...we find the opposite
+\begin{figure}[h]
+    \centering
+    \begin{subfigure}[b]{0.49\textwidth}
         \centering
-        \begin{subfigure}[b]{0.49\textwidth}
-            \centering
-            \includegraphics[width=\textwidth]{images/overfit_vs_attack.png}
-            \caption{overfitting}
-            \label{overfit}
-        \end{subfigure}
-        \begin{subfigure}[b]{0.49\textwidth}
-            \centering
-            \includegraphics[width=\textwidth]{images/overparam_vs_attack.png}
-            \caption{overparameterization}
-            \label{overparam}
-        \end{subfigure}
-        \caption{Efectos}
-        \label{overaparam_overfit}
-    \end{figure}
-    
-    En la Figura \ref{overfit} se observa que conforme aumentamos el número de épocas (epochs), la precisión (accuracy) aumenta con respecto a cada épsilon, excepto para 200 épocas, cuya precisión es menor que la de 100 épocas, e incluso menor que la de 50 épocas para épsilon $>$ 0.5. Aumentar el número de épocas implica un sobreajuste (overfitting) de la red neuronal, lo cual significa que...
-    
-    En la figura \ref{overparam} se observa que conforme aumentamos el número de capas (layers), la precisión aumenta, excepto para 4 y 10 capas adicionales. Nótese que para épsilon $>$ 0.8, la red con 6 capas adicionales tuvo el mejor desempeño. Aumentar el número de capas implica una sobreparametrización (overparameterization) de la red neuronal, lo cual significa que...
-    
-    \item fix a large overparameterization and see if overfitting has the same effect
-    \item pick an overparameterization and overfitting and check jpeg
+        \includegraphics[width=\textwidth]{images/overfit_vs_attack.png}
+        \caption{overfitting}
+        \label{overfit}
+    \end{subfigure}
+    \begin{subfigure}[b]{0.49\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{images/overparam_vs_attack.png}
+        \caption{overparameterization}
+        \label{overparam}
+    \end{subfigure}
+    \caption{Efectos}
+    \label{overaparam_overfit}
+\end{figure}
 
-\end{itemize}
+En la Figura \ref{overfit} se observa que conforme aumentamos el número de épocas (epochs), la precisión (accuracy) aumenta con respecto a cada épsilon, excepto para 200 épocas, cuya precisión es menor que la de 100 épocas, e incluso menor que la de 50 épocas para épsilon $>$ 0.5. Aumentar el número de épocas implica un sobreajuste (overfitting) de la red neuronal, lo cual significa que...
+
+En la figura \ref{overparam} se observa que conforme aumentamos el número de capas (layers), la precisión aumenta, excepto para 4 y 10 capas adicionales. Nótese que para épsilon $>$ 0.8, la red con 6 capas adicionales tuvo el mejor desempeño. Aumentar el número de capas implica una sobreparametrización (overparameterization) de la red neuronal, lo cual significa que...
+    
 \subsection{Saliency}
 \begin{itemize}
     \item Show figures from notebook of how adversarial noise attacks parts of the image that seem vulnerable (for example changing a 3$\to$8)

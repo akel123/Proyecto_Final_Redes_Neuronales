@@ -122,7 +122,7 @@ Las 10 clases de CIFAR-10 se encuentran en orden alfabético y son:
 \subsection{Ataques}
 
 \subsubsection{Fast Gradient Method}
-\cite{goodfellow2015explaining, maybe more}
+\cite{goodfellow2015explaining}, maybe more
 
 Sean $\theta$ los parámetros de un modelo, $x$ la entrada, $y$ las salidas asociadas, y $J(\theta, x, y)$ la función de costo. La función de costo se linealiza alrededor del valor actual de $\theta$. Sea $\epsilon \in \mathbb{R}^+$. Definamos la imagen adversaria 
 \[\tilde{x} = x + \epsilon \eta_{\text{opt}}\]
@@ -152,10 +152,12 @@ En la Figura \ref{CW} se observa que el ataque es totalmente imperceptible para 
 
 \begin{figure}[h!]
     \centering
-    \includegraphics[width=0.7\textwidth]{images/CW/CW_L2.png}
+    \includegraphics[width=0.5\textwidth]{images/CW/CW_L2.png}
     \caption{Ataque de Carlini \& Wagner con la norma $L^2$ sobre MNIST aplicando un ataque dirigido para cada par fuente/objetivo (source/target)}
     \label{CW}
 \end{figure}
+
+
 
 \subsection{Defensas}
 

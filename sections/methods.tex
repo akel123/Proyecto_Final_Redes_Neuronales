@@ -146,7 +146,7 @@ con $f$ definida como
 \begin{equation*}
     f(x') = \text{max}(\ \text{max}\{Z(x')_i : i\neq t\} - Z(x')_t\ ,\ -\kappa\ )
 \end{equation*}
-Esta $f$ está basada en una función objetivo en la que se controla la confianza con la que ocurre una clasificación errónea al ajustar el valor de $\kappa$. El parámetro $\kappa$ sugiere a quien esté resolviendo el problema encontrar una instancia adversaria $x'$ que sea clasificada con mucha confianza como la clase $t$. Ellos toman $\kappa = 0$.
+Esta $f$ está basada en una función objetivo en la que se controla la confianza con la que ocurre una clasificación errónea al ajustar el valor de $\kappa$. El parámetro $\kappa$ sugiere a quien esté resolviendo el problema encontrar una instancia adversaria $x'$ que sea clasificada con mucha confianza como la clase $t$. Ellos toman $\kappa = 0$. $Z(x)$ es el logit para $x$, es decir la pre-activación de la capa de salida softmax.
 
 En la Figura \ref{CW} se observa que el ataque es totalmente imperceptible para nosotros.
 

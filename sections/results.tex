@@ -78,28 +78,52 @@ En la Figura \ref{jpeg_def} se muestra el resultado de nuestro entrenamiento de 
 
 \subsection{Los efectos de Overfitting y Overparameterization}
 
-here they suggest overparameterization contributes to sharp gradient landscape \cite{ma2020understanding}...we find the opposite
+Se ha sugerido que algunas propiedades de ciertas redes pueden contribuir a su suceptibilidad a los ataques adversarias. Por ejemplo, en el contexto de las imagenes médicas y sus redes respectivas, proponen que overfitting y overparameterization pueden actuar de esa manera \cite{ma2020understanding}. \textit{Overfitting} ocurre cuando el modelo clasifica bien los datos de entrenamiento, pero no se generaliza tan bien. Es decir, en los datos de validación, tiene peor desempeño. \textit{Overparameterization} tiene lugar cuando hay tantos parámetros que la red es capaz de ``memorizar'' completamente los datos. Hacemos un pequeño análisis para probar este hipótesis y no encontramos resultados que le apoyen. De hecho, con las redes que probamos, encontramos lo opuesto. En general, overfitting y overparameterization hacen que la red sea más robusto a los ataques adversarios (Figure \ref{overaparam_overfit}).
+
+Para explorar lo de overfitting, cinco redes fueron entrenadas usado distintos numeros de épocas (epochs). Enre más épocas, más probabilidad de que la red haya sido overfit. Para ver lo mismo con overparameterization, seis redes fuernon entrenadas con distinas cantidades de parámetros. Se le metieron un cierto número de capas (layers) adicionales directamente antes de la última. Cada capa adicional tenía 256 nodos. Así que, probamos redes con varios números de parámetros (Cuadro \ref{overparam_table}).
+
+\begin{table}[h]
+    \centering
+    \begin{tabular}{|c|c|}
+     \hline
+     Red & Número de parámetros  \\ 
+     \hline
+     Normal & $61,706$  \\ 
+     \hline
+     2 Capas Adicionales & $150,978$  \\ 
+     \hline
+     4 Capas Adicionales & $282,562$  \\ 
+     \hline
+     6 Capas Adicionales & $414,146$  \\ 
+     \hline
+     10 Capas Adicionales & $743,106$  \\ 
+     \hline
+     20 Capas Adicionales & $1,335,234$  \\ 
+     \hline
+    \end{tabular}
+    \caption{table}
+    \label{overparam_table}
+\end{table}
+
 \begin{figure}[h]
     \centering
     \begin{subfigure}[b]{0.49\textwidth}
         \centering
         \includegraphics[width=\textwidth]{images/overfit_vs_attack.png}
-        \caption{overfitting}
+        \caption{}
         \label{overfit}
     \end{subfigure}
     \begin{subfigure}[b]{0.49\textwidth}
         \centering
         \includegraphics[width=\textwidth]{images/overparam_vs_attack.png}
-        \caption{overparameterization}
+        \caption{}
         \label{overparam}
     \end{subfigure}
-    \caption{Efectos}
+    \caption{En (\ref{overfit}) se observa que conforme aumentamos el número de épocas (epochs), la precisión (accuracy) aumenta con respecto a cada épsilon. Asimismo en (\ref{overparam}), en general, aumentar el número de capas (layers) aumenta la precisión}
     \label{overaparam_overfit}
 \end{figure}
 
-En la Figura \ref{overfit} se observa que conforme aumentamos el número de épocas (epochs), la precisión (accuracy) aumenta con respecto a cada épsilon, excepto para 200 épocas, cuya precisión es menor que la de 100 épocas, e incluso menor que la de 50 épocas para épsilon $>$ 0.5. Aumentar el número de épocas implica un sobreajuste (overfitting) de la red neuronal, lo cual significa que...
-
-En la figura \ref{overparam} se observa que conforme aumentamos el número de capas (layers), la precisión aumenta, excepto para 4 y 10 capas adicionales. Nótese que para épsilon $>$ 0.8, la red con 6 capas adicionales tuvo el mejor desempeño. Aumentar el número de capas implica una sobreparametrización (overparameterization) de la red neuronal, lo cual significa que...
+\pagebreak
     
 \subsection{Saliency}
 \begin{itemize}

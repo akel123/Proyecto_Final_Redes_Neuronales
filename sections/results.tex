@@ -1,9 +1,19 @@
 \section{Resultados}
 \subsection{Función Transferencia de las Redes}
 Una manera útil de pensar de una red es con un punto de vista basado en teoría de control. De esta forma, construimos una función de transferencia calculando la respuesta de la red a ciertas frecuencias. 
-\begin{itemize}
-    \item Bode Diagrams
-\end{itemize}
+\begin{figure}[h!]
+    \centering
+    \includegraphics[width=\textwidth]{images/bode_diagrams/explanation_bode.png}
+    \caption{stuff}
+    \label{bode_explain}
+\end{figure}
+
+Así se puede ver las frecuencias a las que la red tiene mayor o menor sensibilidad.
+
+\begin{figure}[h!]
+    \centering
+    \includegraphics[width=\textwidth]{images/bode_diagrams/mnist_nets.png}
+\end{figure}
 \subsection{¿Qué hace la defensa de JPEG?}
 
 Como vimos en la sección de compresión JPEG, cuando esta es aplicada a una imagen que ha sido sometida a un ataque adversario, los componentes de alta frecuencia se eliminan y, así como los humanos percibimos en menor medida dichos componentes, es posible que la red no logre distinguir el ataque perpetrado sobre la imagen, esto debido a que los ataques suelen tratarse de pequeñas cantidades de ruido o distorsión introducidos en la imagen y, al reducir la calidad de la misma, la red tiene más probabilidades de recuperar la clasificación original de la imagen.

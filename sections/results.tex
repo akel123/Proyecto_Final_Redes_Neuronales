@@ -1,20 +1,21 @@
 \section{Resultados}
-\subsection{Las redes neuronales como un filtro}
+\subsection{Función Transferencia de las Redes}
+Una manera útil de pensar de una red es con un punto de vista basado en teoría de control. De esta forma, construimos una función de transferencia calculando la respuesta de la red a ciertas frecuencias. 
 \begin{itemize}
     \item Bode Diagrams
 \end{itemize}
 \subsection{¿Qué hace la defensa de JPEG?}
 
-\begin{itemize}
-    \item Intuition: JPEG removes noise that humans can't see
-    \item Show graphs of jpeg defense vs epsilon of each attack
-    \item Bode diagrams with jpeg conversion as first layer
-\end{itemize}
-
 Como vimos en la sección de compresión JPEG, cuando esta es aplicada a una imagen que ha sido sometida a un ataque adversario, los componentes de alta frecuencia se eliminan y, así como los humanos percibimos en menor medida dichos componentes, es posible que la red no logre distinguir el ataque perpetrado sobre la imagen, esto debido a que los ataques suelen tratarse de pequeñas cantidades de ruido o distorsión introducidos en la imagen y, al reducir la calidad de la misma, la red tiene más probabilidades de recuperar la clasificación original de la imagen.
 
-En la Figura \ref{jpeg_def} se muestra el resultado de nuestro entrenamiento de las redes LeNet y ResNet utilizando MNIST y el ataque FGSM con la norma $L_\infty$ para distintos niveles de compresión JPEG como defensa. Se observa que, efectivamente, conforme aumenta la compresión (disminuye la calidad), la precisión (accuracy) en la clasificación de las imágenes por parte de la red es mayor. Nótese que con ResNet la precisión decae más rápidamente conforme aumenta el épsilon.
+\begin{figure}[h!]
+    \centering
+    \includegraphics[width=0.8\textwidth]{images/jpeg/jpegdefense_example.png}
+    \label{jpegexample}
+    \caption{stuff}
+\end{figure}
 
+En la Figura \ref{jpeg_def} se muestra el resultado de nuestro entrenamiento de las redes LeNet y ResNet utilizando MNIST y el ataque FGSM con la norma $L_\infty$ para distintos niveles de compresión JPEG como defensa. Se observa que, efectivamente, conforme aumenta la compresión (disminuye la calidad), la precisión (accuracy) en la clasificación de las imágenes por parte de la red es mayor. Nótese que con ResNet la precisión decae más rápidamente conforme aumenta el épsilon.
 \begin{figure}[h!]
     \centering
     \begin{subfigure}[b]{0.49\textwidth}
@@ -30,31 +31,38 @@ En la Figura \ref{jpeg_def} se muestra el resultado de nuestro entrenamiento de 
     \caption{Resultado de la compresión JPEG como defensa ante el ataque FGSM sobre MNIST}
     \label{jpeg_def}
 \end{figure}
+\pagebreak
 
-\begin{figure}[h!]
-\centering
-\begin{subfigure}[t]{0.22\textwidth}
-\centering
-    \includegraphics[width=\textwidth]{images/jpeg/fgsm_Le.png}
-    \caption{Sin compresión JPEG}
-\end{subfigure}
-\hspace{1em}
-\begin{subfigure}[t]{0.22\textwidth}
-\centering
-    \includegraphics[width=\textwidth]{images/jpeg/fgsm_jpeg20_Le.png}
-    \caption{20\%}
-\end{subfigure}
-\hspace{1em}
-\begin{subfigure}[t]{0.22\textwidth}
-\centering
-    \includegraphics[width=\textwidth]{images/jpeg/fgsm_jpeg1_Le.png}
-    \caption{1\%}
-\end{subfigure}
-\caption{Ruido del ataque FGSM para distintas calidades en la compresión JPEG en el elemento \texttt{test[1]} de MNIST. En todos los casos, la red clasificó al 2 como un 7.}
-\label{Noise}
-\end{figure}
+{\LARGE \textbf{to do:}}
+\begin{itemize}
+    \item Carlini Wagner attack graphs
+    \item JPEG defense graphs with cifar10
+    \item Bode diagrams with jpeg conversion as first layer
+    
+\end{itemize}
 
-En la Figura \ref{Noise} se observa cómo el ruido generado por el ataque FGSM también se distorsiona conforme aumenta la compresión JPEG.
+
+% \begin{subfigure}[t]{0.22\textwidth}
+% \centering
+%     \includegraphics[width=\textwidth]{images/jpeg/fgsm_Le.png}
+%     \caption{Sin compresión JPEG}
+% \end{subfigure}
+% \hspace{1em}
+% \begin{subfigure}[t]{0.22\textwidth}
+% \centering
+%     \includegraphics[width=\textwidth]{images/jpeg/fgsm_jpeg20_Le.png}
+%     \caption{20\%}
+% \end{subfigure}
+% \hspace{1em}
+% \begin{subfigure}[t]{0.22\textwidth}
+% \centering
+%     \includegraphics[width=\textwidth]{images/jpeg/fgsm_jpeg1_Le.png}
+%     \caption{1\%}
+% \end{subfigure}
+% \caption{Ruido del ataque FGSM para distintas calidades en la compresión JPEG en el elemento \texttt{test[1]} de MNIST. En todos los casos, la red clasificó al 2 como un 7.}
+
+
+% En la Figura \ref{Noise} se observa cómo el ruido generado por el ataque FGSM también se distorsiona conforme aumenta la compresión JPEG.
 
 
 

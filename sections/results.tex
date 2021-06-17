@@ -1,6 +1,6 @@
 \section{Resultados}
 \subsection{Función Transferencia de las Redes}
-Una manera útil de pensar de una red es con un punto de vista basado en teoría de control. De esta forma, construimos una función de transferencia calculando la respuesta de la red a ciertas frecuencias. 
+Una manera útil de pensar a una red es con un punto de vista basado en teoría de control. De esta forma, construimos una función de transferencia calculando la respuesta de la red a ciertas frecuencias. 
 \begin{figure}[h!]
     \centering
     \includegraphics[width=\textwidth]{images/bode_diagrams/explanation_bode.png}
@@ -42,6 +42,31 @@ En la Figura \ref{jpeg_def} se muestra el resultado de nuestro entrenamiento de 
     \label{jpeg_def}
 \end{figure}
 \pagebreak
+
+\subsection{JPEG en CIFAR-10}
+
+Con los ataques FGM (Figura \ref{frog_cat}), que tiene norma $L_2$, y FGSM (Figura \ref{frog_dog}), que tiene norma $L_\infty$, se tiene una clasificación errónea de la imagen \texttt{train[0]} del conjunto CIFAR-10 a partir de un épsilon de 0.01 y 0.03, respectivamente. En la Figura \ref{cifar_acc_eps} se observa la eficacia de la defensa JPEG contra el ataque FGSM para distintas calidades de la imagen: mientras menor es la calidad, mayor es la precisión de la red al clasificar la imagen.
+
+\begin{figure}[h!]
+    \centering
+    \includegraphics[width=0.8\textwidth]{images/cifar-10/frog_cat.png}
+    \caption{Caption}
+    \label{frog_cat}
+\end{figure}
+
+\begin{figure}[h!]
+    \centering
+    \includegraphics[width=0.8\textwidth]{images/cifar-10/frog_dog.png}
+    \caption{Caption}
+    \label{frog_dog}
+\end{figure}
+
+\begin{figure}[h!]
+    \centering
+    \includegraphics[width=0.5\textwidth]{images/cifar-10/cifar_acc_eps.png}
+    \caption{Caption}
+    \label{cifar_acc_eps}
+\end{figure}
 
 
 {\LARGE \textbf{to do:}}
@@ -85,8 +110,9 @@ En la Figura \ref{jpeg_def} se muestra el resultado de nuestro entrenamiento de 
 
 Se ha sugerido que algunas propiedades de ciertas redes pueden contribuir a su susceptibilidad a los ataques adversarios. Por ejemplo, en el contexto de las imágenes médicas y sus redes respectivas, se propone que el overfitting y overparameterization pueden actuar de esa manera \cite{ma2020understanding}. El \textit{overfitting} ocurre cuando el modelo clasifica bien los datos de entrenamiento, pero no se generaliza tan bien, es decir, en los datos de validación tiene peor desempeño. \textit{Overparameterization} tiene lugar cuando hay tantos parámetros que la red es capaz de ``memorizar'' completamente los datos. Hicimos un pequeño análisis para probar esta hipótesis y no encontramos resultados que la apoyen. De hecho, con las redes que probamos, encontramos lo opuesto. En general, overfitting y overparameterization hacen que la red sea más robusta a los ataques adversarios (Figure \ref{overaparam_overfit}).
 
-Para explorar el overfitting, cinco redes fueron entrenadas usado distintos numeros de épocas (epochs). Enre más épocas, más probabilidad de que la red haya sido sobreajustada. Para ver lo mismo con overparameterization, seis redes fueron entrenadas con distintas cantidades de parámetros. Se le agregaron un cierto número de capas (layers) adicionales directamente antes de la última. Cada capa adicional tenía 256 nodos. Así que probamos redes con varios números de parámetros (Cuadro \ref{overparam_table}).
+Para explorar el overfitting, la red LeNet fue modificada al ser entrenada con 5 cantidades distintas de épocas (epochs). Mientras más épocas, mayor es la probabilidad de que la red haya sido sobreajustada (overfit). Para explorar la overparameterization, la red fue entrenada con distintas cantidades de parámetros, agregando un cierto número de capas (layers) adicionales directamente antes de la última, cada capa adicional con 256 nodos (Tabla \ref{overparam_table}).
 
+\renewcommand{\tablename}{Tabla}
 \begin{table}[h]
     \centering
     \begin{tabular}{|c|c|}

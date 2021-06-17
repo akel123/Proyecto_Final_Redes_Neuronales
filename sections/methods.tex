@@ -148,12 +148,12 @@ con $f$ definida como
 \end{equation*}
 Esta $f$ está basada en una función objetivo en la que se controla la confianza con la que ocurre una clasificación errónea al ajustar el valor de $\kappa$. El parámetro $\kappa$ sugiere a quien esté resolviendo el problema encontrar una instancia adversaria $x'$ que sea clasificada con mucha confianza como la clase $t$. Ellos toman $\kappa = 0$. $Z(x)$ es el logit para $x$, es decir la pre-activación de la capa de salida softmax.
 
-En la Figura \ref{CW} se observa que el ataque es totalmente imperceptible para nosotros. Aunque este ataque puede ser dirigido, se usa de la forma no dirigida en este reporte. 
+En la Figura \ref{CW} se observa que el ataque es totalmente imperceptible para nosotros. Aunque este ataque puede ser dirigido, se usa de la forma no dirigida en este reporte: en la Figura \ref{attack_examples} se muestra el tipo de ruido que generan los ataques FGSM, FGM y Carlini-Wagner, los cuales son cada vez más sutiles en ese respectivo orden, y con esos tres ataques se logra que la red clasifique erróneamente un 8 por un 3.
 
 \begin{figure}[h!]
     \centering
     \includegraphics[width=0.5\textwidth]{images/CW/CW_L2.png}
-    \caption{Ataque de Carlini \& Wagner con la norma $L^2$ sobre MNIST aplicando un ataque dirigido para cada par fuente/objetivo (source/target)}
+    \caption{Ataque de Carlini \& Wagner con la norma $L^2$ sobre MNIST aplicando un ataque dirigido para cada par fuente/objetivo (source/target) \cite{carlini2017evaluating}.}
     \label{CW}
 \end{figure}
 
@@ -163,23 +163,23 @@ En la Figura \ref{CW} se observa que el ataque es totalmente imperceptible para 
     \begin{subfigure}[b]{0.55\textwidth}
         \centering
         \includegraphics[width=\textwidth]{images/fgms_example.png}
-        \caption{fgsm example}
+        \caption{FGSM}
         \label{fgsm_example}
     \end{subfigure}
     \begin{subfigure}[b]{0.55\textwidth}
         \centering
         \includegraphics[width=\textwidth]{images/fgm_example.png}
-        \caption{fgm example}
+        \caption{FGM}
         \label{fgm_example}
     \end{subfigure}
     \begin{subfigure}[b]{0.55\textwidth}
         \centering
         \includegraphics[width=\textwidth]{images/CW_example.png}
-        \caption{CW example}
+        \caption{CW}
         \label{CW_example}
     \end{subfigure}
+    \caption{Ruido de los ataques FGSM, FGM y Carlini-Wagner sobre MNIST, con los cuales un 8 es clasificado erróneamente por la red como un 3.}
     \label{attack_examples}
-    \caption{stuff}
 \end{figure}
 
 \subsection{Defensas}

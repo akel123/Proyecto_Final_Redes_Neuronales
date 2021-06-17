@@ -1,71 +1,50 @@
 \section{Método}
 
 \subsection{Datos}
-Para entrenar nuestras redes y probar los ataques adversarios y las defensas contra ellos, se emplearon las dos bases de datos más sencillas para procesamiento de imágenes: MNIST y CIFAR-10.
+Para entrenar nuestras redes neuronales artificiales y probar los ataques adversarios y las defensas contra ellos, se emplearon las dos bases de datos más sencillas para procesamiento de imágenes: MNIST y CIFAR-10.
 
 \subsubsection{MNIST}
-La base de datos MNIST es un compendio de los dígitos del 0 al 9 en letra manuscrita con 60,000 imágenes para entrenar a distintos sistemas de procesamiento de imágenes y 10,000 imágenes para evaluarlos. Se trata de un subconjunto de imágenes de un conjunto más grande que compiló el National Institute of Standards and Technology (NIST) del Departamento de Comercio los EEUU. Las siglas MNIST database significan Modified NIST database. Es una buena base de datos para probar técnicas de aprendizaje y métodos de reconocimiento de patrones con datos del mundo real empleando un esfuerzo mínimo en preprocesamiento y formato.
-
-De las 10,000 imágenes de evaluación, la mitad fueron escritas por estudiantes de preparatoria y la otra mitad por empleados de la oficina de censos, mientras que de las 60,000 imágenes de entrenamiento, 58,527 de los números fueron escritos por 500 estudiantes y el resto por los empleados.
-
-El tamaño de estas imágenes en blanco y negro fue normalizado a una caja de 20$\times$20 pixeles y se colocó su centro de masa en un campo de 28$\times$28 \cite{lecun2010mnist}. En la Figura \ref{mnist} se muestran algunos ejemplos de estas imágenes.
+La base de datos MNIST es un compendio de los dígitos del 0 al 9 en letra manuscrita con 60,000 imágenes para entrenar a distintos sistemas de procesamiento de imágenes y 10,000 imágenes para evaluarlos. Se trata de un subconjunto de imágenes de un conjunto más grande que compiló el National Institute of Standards and Technology (NIST) del Departamento de Comercio los EEUU. Las siglas MNIST database significan Modified NIST database. Es una buena base de datos para probar técnicas de aprendizaje y métodos de reconocimiento de patrones con datos del mundo real empleando un esfuerzo mínimo en preprocesamiento y formato. En la Figura \ref{mnist_train} se muestran 100 imágenes del conjunto de entrenamiento y en la Figura \ref{mnist_test} se muestran 100 imágenes del conjunto de evaluación.
 
 \begin{figure}[h!]
     \centering
-    \begin{subfigure}[b]{0.4\textwidth}
-        \centering
-        \includegraphics[width=\textwidth]{images/mnist/MNIST.png}
-        \caption{Algunas imágenes del conjunto de evaluación de la base de datos MNIST \cite{Lecun98}}
-        \label{mnist1}
-    \end{subfigure}
-    \hspace{1cm}
-    \begin{subfigure}[b]{0.45\textwidth}
-        \centering
-        \includegraphics[width=\textwidth]{images/mnist/MNISTmiscl.png}
-        \caption{82 imágenes de evaluación que LeNet-5 clasificó erróneamente \cite{Lecun98}}
-        \label{mnist2}
-    \end{subfigure}
-    \caption{Imágenes de MNIST}
-    \label{mnist}
-\end{figure}
-
-\begin{figure}[h!]
-    \centering
-    \begin{subfigure}[b]{0.45\textwidth}
+    \begin{subfigure}[b]{0.47\textwidth}
         \centering
         \includegraphics[width=\textwidth]{images/mnist/mnist_train_first50.png}
-        \caption{Primeras 50 imágenes del conjunto \texttt{train} de MNIST con sus respectivas etiquetas}
-        \label{mnist3}
+        \caption{Primeras 50 imágenes del conjunto \texttt{train} de MNIST con sus respectivas etiquetas.}
+        \label{mnist1}
     \end{subfigure}
-    \hspace{1cm}
-    \begin{subfigure}[b]{0.45\textwidth}
+    \hspace{1em}
+    \begin{subfigure}[b]{0.47\textwidth}
         \centering
         \includegraphics[width=\textwidth]{images/mnist/mnist_train_random.png}
-        \caption{50 imágenes aleatorias del conjunto \texttt{train} de MNIST con sus respectivas etiquetas}
-        \label{mnist4}
+        \caption{50 imágenes aleatorias del conjunto \texttt{train} de MNIST con sus respectivas etiquetas.}
+        \label{mnist2}
     \end{subfigure}
     \caption{Imágenes del conjunto de entrenamiento (train) de MNIST}
-    \label{mnist_}
+    \label{mnist_train}
 \end{figure}
 
 \begin{figure}[h!]
     \centering
-    \begin{subfigure}[b]{0.45\textwidth}
+    \begin{subfigure}[b]{0.47\textwidth}
         \centering
         \includegraphics[width=\textwidth]{images/mnist/mnist_test_first50.png}
-        \caption{Primeras 50 imágenes del conjunto \texttt{test} de MNIST con sus respectivas etiquetas}
-        \label{mnist5}
+        \caption{Primeras 50 imágenes del conjunto \texttt{test} de MNIST con sus respectivas etiquetas.}
+        \label{mnist3}
     \end{subfigure}
-    \hspace{1cm}
-    \begin{subfigure}[b]{0.45\textwidth}
+    \hspace{1em}
+    \begin{subfigure}[b]{0.47\textwidth}
         \centering
         \includegraphics[width=\textwidth]{images/mnist/mnist_test_random.png}
-        \caption{50 imágenes aleatorias del conjunto \texttt{test} de MNIST con sus respectivas etiquetas}
-        \label{mnist6}
+        \caption{50 imágenes aleatorias del conjunto \texttt{test} de MNIST con sus respectivas etiquetas.}
+        \label{mnist4}
     \end{subfigure}
     \caption{Imágenes del conjunto de evaluación (test) de MNIST}
     \label{mnist_test}
 \end{figure}
+
+De las 10,000 imágenes de evaluación, la mitad fueron escritas por estudiantes de preparatoria y la otra mitad por empleados de la oficina de censos, mientras que de las 60,000 imágenes de entrenamiento, 58,527 de los números fueron escritos por 500 estudiantes y el resto por los empleados. El tamaño de estas imágenes en blanco y negro fue normalizado a una caja de 20$\times$20 pixeles y se colocó su centro de masa en un campo de 28$\times$28 \cite{lecun2010mnist}.
 
 \begin{figure}[h!]
     \centering

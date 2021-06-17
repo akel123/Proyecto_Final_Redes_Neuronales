@@ -1,5 +1,5 @@
 \section{Resultados}
-\subsection{Función Transferencia de las Redes}
+\subsection{Función de Transferencia de las Redes}
 Una manera útil de pensar a una red es con un punto de vista basado en teoría de control. De esta forma, construimos una función de transferencia calculando la respuesta de la red a ciertas frecuencias. 
 \begin{figure}[h!]
     \centering
@@ -16,6 +16,9 @@ Así se puede ver las frecuencias a las que la red tiene mayor o menor sensibili
     \caption{}
     \label{bode_examples}
 \end{figure}
+
+
+
 \subsection{¿Qué hace la defensa de JPEG?}
 
 Como vimos en la sección de compresión JPEG, cuando esta es aplicada a una imagen que ha sido sometida a un ataque adversario, los componentes de alta frecuencia se eliminan y, así como los humanos percibimos en menor medida dichos componentes, es posible que la red no logre distinguir el ataque perpetrado sobre la imagen, esto debido a que los ataques suelen tratarse de pequeñas cantidades de ruido o distorsión introducidos en la imagen y, al reducir la calidad de la misma, la red tiene más probabilidades de recuperar la clasificación original de la imagen. Esto se encuentra esquematizado en la Figura \ref{jpegexample}.
@@ -49,17 +52,17 @@ En la Figura \ref{jpeg_def} se muestra el resultado de nuestro entrenamiento de 
     \item Carlini Wagner attack graphs
 \end{itemize}
 
-Vemos como se cambian las funcionces de transferencia de cada red cuando las imagenes pasan por compresión JPEG: frecuencia $\to$ compresión JPEG $\to$ $1^\text{er}$ capa (convolucional) $\to$ respuesta (Figura \ref{bode_gifs}). Se nota que no hay mucho cambio en LeNet para ninguna calidad de compresión. Con respecto a ResNet, sí hay más modelación con unas calidades bajas (calidad $= 7-16$), pero no vimos un gran cambio en el desempeño de la red. Cabe mencionar que las calidades más bajas ($1-5$) destruyeron completamente cada frecuencia que pasamos por la red, y por eso no hay ningún cambio en la función de transferencia para esas calidades. Pensamos que eso es un artifacto del tamaño de imagenes y no se debe tomar al pie de la letra. Asimismo, por el tamaño de las imagenes, hay baja resolución frecuencial, y eso también puede afectar los resultados. Este análisis debe de ser repedito para imagenes más grandes.
+Vemos cómo cambian las funciones de transferencia de cada red cuando las imágenes pasan por compresión JPEG: frecuencia $\to$ compresión JPEG $\to$ $1^\text{er}$ capa (convolucional) $\to$ respuesta (Figura \ref{bode_gifs}). Se nota que no hay mucho cambio en LeNet para ninguna calidad de compresión. Con respecto a ResNet, sí hay más modelación con unas calidades bajas (calidad $= 7-16$), pero no vimos un gran cambio en el desempeño de la red. Cabe mencionar que las calidades más bajas ($1-5$) destruyeron completamente cada frecuencia que pasamos por la red, y por eso no hay ningún cambio en la función de transferencia para esas calidades. Pensamos que eso es un artefacto del tamaño de las imágenes y no se debe tomar al pie de la letra. Asimismo, por el tamaño de las imágenes, hay baja resolución frecuencial, y eso también puede afectar los resultados. Este análisis debe de ser repetido para imágenes más grandes.
 \begin{figure}[h]
     \animategraphics[autoplay,loop, width=0.48\linewidth]{5}{images/bode_diagrams/LeNet/}{1}{100}
     \animategraphics[autoplay,loop, width=0.48\linewidth]{5}{images/bode_diagrams/ResNet/}{1}{100}
-    \caption{Esas GIFs fueron hechas de la misma manera que \ref{bode_examples}, pero las frecuencias fueron comprimpridas con JPEG antes de pasarlas por la red. }
+    \caption{Estos GIFs fueron hechos de la misma manera que la Figura \ref{bode_examples}, pero las frecuencias fueron comprimidas con JPEG antes de pasarlas por la red.}
     \label{bode_gifs}
 \end{figure}
 
 \subsection{JPEG en CIFAR-10}
 
-Con los ataques FGSM (Figura \ref{frog_cat_fgsm}), que tiene norma $L_\infty$, y FGM (Figura \ref{frog_cat_fgm}), que tiene norma $L_2$, se tiene una clasificación errónea de la imagen \texttt{train[0]} del conjunto CIFAR-10 a partir del épsilon indicado en la figura. Como en el FGSM cada pixel tiene una mayor intensidad, no se requiere un épsilon tan grande como el de FGM. En la Figura \ref{cifar_jpeg_accuracy} se observa la eficacia de la defensa JPEG contra el ataque FGSM para distintas calidades de la imagen: mientras menor es la calidad, mayor es la precisión de la red al clasificar la imagen. Nótese que hay una desventaja en usar JPEG porque disminuye la precisión de la red entre más baja sea la calidad (Figura \ref{cifar_accuracy_epsilon}).
+Utilizando LeNet, con los ataques FGSM (Figura \ref{frog_cat_fgsm}), que tiene norma $L_\infty$, y FGM (Figura \ref{frog_cat_fgm}), que tiene norma $L_2$, se tiene una clasificación errónea de la imagen \texttt{train[0]} del conjunto CIFAR-10 a partir del épsilon indicado en la figura. Como en el FGSM cada pixel tiene una mayor intensidad, no se requiere un épsilon tan grande como el de FGM. En la Figura \ref{cifar_jpeg_accuracy} se observa la eficacia de la defensa JPEG contra el ataque FGSM para distintas calidades de la imagen: mientras menor es la calidad, mayor es la precisión de la red al clasificar la imagen. Nótese que hay una desventaja en usar JPEG porque disminuye la precisión de la red entre más baja sea la calidad (Figura \ref{cifar_accuracy_epsilon}).
 
 
 
@@ -96,19 +99,20 @@ Con los ataques FGSM (Figura \ref{frog_cat_fgsm}), que tiene norma $L_\infty$, y
 
 \begin{figure}[h!]
     \centering
-    \begin{subfigure}[b]{0.49\textwidth}
+    \begin{subfigure}[b]{0.48\textwidth}
         \centering
         \includegraphics[width=\textwidth]{images/cifar-10/cifar_epsilon_accuracy.png}
-        \caption{}
+        \caption{Precisión de LeNet para distintos valores de la calidad de la imagen en la compresión JPEG}
         \label{cifar_jpeg_accuracy}
     \end{subfigure}
-    \begin{subfigure}[b]{0.49\textwidth}
+    \hspace{4mm}
+    \begin{subfigure}[b]{0.48\textwidth}
         \centering
         \includegraphics[width=\textwidth]{images/cifar-10/cifar_JPEG_accuracy.png}
-        \caption{}
+        \caption{Precisión de LeNet en función de la calidad de la imagen en la compresión JPEG}
         \label{cifar_accuracy_epsilon}
     \end{subfigure}
-    \caption{ }
+    \caption{Eficacia de JPEG}
     \label{cifrar_accuracy}
 \end{figure}
 

@@ -13,6 +13,8 @@ Así se puede ver las frecuencias a las que la red tiene mayor o menor sensibili
 \begin{figure}[h!]
     \centering
     \includegraphics[width=\textwidth]{images/bode_diagrams/mnist_nets.png}
+    \caption{}
+    \label{bode_examples}
 \end{figure}
 \subsection{¿Qué hace la defensa de JPEG?}
 
@@ -47,16 +49,16 @@ En la Figura \ref{jpeg_def} se muestra el resultado de nuestro entrenamiento de 
 {\LARGE \textbf{to do:}}
 \begin{itemize}
     \item Carlini Wagner attack graphs
-    \item JPEG defense graphs with cifar10
-    \item Bode diagrams with jpeg conversion as first layer
-    
-    
+    \item JPEG defense graphs with cifar10    
 \end{itemize}
-\begin{figure}
-    
+Vemos como se cambian las funcionces de transferencia de cada red cuando las imagenes pasan por compresión JPEG: frecuencia $\to$ compresión JPEG $\to$ $1^\text{er}$ capa (convolucional) $\to$ respuesta \ref{bode_gifs}. Se nota que no hay mucho cambio en LeNet para ninguna calidad de compresión. Con respecto a ResNet, sí hay más modelación con unas calidades bajas (calidad $= 7-16$), pero no vimos un gran cambio en el desempeño de la red. Cabe mencionar que las calidades más bajas ($1-5$) destruyeron completamente cada frecuencia que pasamos por la red, y por eso no hay ningún cambio en la función de transferencia para esas calidades. Pensamos que eso es un artifacto del tamaño de imagenes y no se debe tomar al pie de la letra. Asimismo, por el tamaño de las imagenes, hay baja resolución frecuencial, y eso también puede afectar los resultados. Este análisis debe de ser repedito para imagenes más grandes.
+\begin{figure}[h]
+    \animategraphics[autoplay,loop, width=0.48\linewidth]{5}{images/bode_diagrams/LeNet/}{1}{100}
+    \animategraphics[autoplay,loop, width=0.48\linewidth]{5}{images/bode_diagrams/ResNet/}{1}{100}
+    \caption{Esas GIFs fueron hechos de la misma manera que \ref{bode_examples}, pero las frecuencias fueron comprimpridas con JPEG antes de pasarlas por la red. }
+    \label{bode_gifs}
 \end{figure}
-\animategraphics[autoplay,loop, width=0.48\linewidth]{5}{images/bode_diagrams/LeNet/}{1}{100}
-\animategraphics[autoplay,loop, width=0.48\linewidth]{5}{images/bode_diagrams/ResNet/}{1}{100}
+
 % \begin{subfigure}[t]{0.22\textwidth}
 % \centering
 %     \includegraphics[width=\textwidth]{images/jpeg/fgsm_Le.png}

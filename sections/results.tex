@@ -61,10 +61,11 @@ Vemos como se cambian las funcionces de transferencia de cada red cuando las ima
 
 Con los ataques FGSM (Figura \ref{frog_cat_fgsm}), que tiene norma $L_\infty$, y FGM (Figura \ref{frog_cat_fgm}), que tiene norma $L_2$, se tiene una clasificación errónea de la imagen \texttt{train[0]} del conjunto CIFAR-10 a partir del épsilon indicado en la figura. Como en el FGSM cada pixel tiene una mayor intensidad, no se requiere un épsilon tan grande como el de FGM. En la Figura \ref{cifar_jpeg_accuracy} se observa la eficacia de la defensa JPEG contra el ataque FGSM para distintas calidades de la imagen: mientras menor es la calidad, mayor es la precisión de la red al clasificar la imagen. Nótese que hay una desventaja en usar JPEG porque disminuye la precisión de la red entre más baja sea la calidad (Figura \ref{cifar_accuracy_epsilon}).
 
+
+
 \begin{figure}[h!]
     \centering
-    \includegraphics[width=0.8\textwidth]{images/cifar-10/frog_cat_fgsm.png}
-    \caption{FGSM sobre CIFAR-10}
+    \includegraphics[width=0.80\textwidth]{images/cifar-10/frog_cat_fgsm.png}
     \label{frog_cat_fgsm}
 \end{figure}
 
@@ -74,6 +75,23 @@ Con los ataques FGSM (Figura \ref{frog_cat_fgsm}), que tiene norma $L_\infty$, y
     \caption{FGM sobre CIFAR-10}
     \label{frog_cat_fgm}
 \end{figure}
+
+\begin{figure}[h!]
+    \centering
+    \includegraphics[width=0.8\textwidth]{images/cifar-10/frog_noises.png}
+    \caption{FFT de los ruidos}
+    \label{frog_ruidos}
+\end{figure}
+
+
+\begin{figure}[h!]
+    \centering
+    \includegraphics[width=\textwidth]{images/cifar-10/frog_cat_fgsm_fft.png}
+    \caption{FFT de los ruidos}
+    \label{frog_cat_fft}
+\end{figure}
+
+
 
 
 \begin{figure}[h!]

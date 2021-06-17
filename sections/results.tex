@@ -53,7 +53,7 @@ En la Figura \ref{jpeg_def} se muestra el resultado de nuestro entrenamiento de 
     
 \end{itemize}
 
-\animategraphics[autoplay,loop]{5}{images/bode_diagrams/resnet/resnet-}{0}{2}
+\animategraphics[autoplay,loop]{5}{images/bode_diagrams/resnet/resnet-}{0}{99}
 % \begin{subfigure}[t]{0.22\textwidth}
 % \centering
 %     \includegraphics[width=\textwidth]{images/jpeg/fgsm_Le.png}
@@ -80,9 +80,9 @@ En la Figura \ref{jpeg_def} se muestra el resultado de nuestro entrenamiento de 
 
 \subsection{Los efectos de Overfitting y Overparameterization}
 
-Se ha sugerido que algunas propiedades de ciertas redes pueden contribuir a su suceptibilidad a los ataques adversarias. Por ejemplo, en el contexto de las imagenes médicas y sus redes respectivas, proponen que overfitting y overparameterization pueden actuar de esa manera \cite{ma2020understanding}. \textit{Overfitting} ocurre cuando el modelo clasifica bien los datos de entrenamiento, pero no se generaliza tan bien. Es decir, en los datos de validación, tiene peor desempeño. \textit{Overparameterization} tiene lugar cuando hay tantos parámetros que la red es capaz de ``memorizar'' completamente los datos. Hacemos un pequeño análisis para probar este hipótesis y no encontramos resultados que le apoyen. De hecho, con las redes que probamos, encontramos lo opuesto. En general, overfitting y overparameterization hacen que la red sea más robusto a los ataques adversarios (Figure \ref{overaparam_overfit}).
+Se ha sugerido que algunas propiedades de ciertas redes pueden contribuir a su susceptibilidad a los ataques adversarios. Por ejemplo, en el contexto de las imágenes médicas y sus redes respectivas, se propone que el overfitting y overparameterization pueden actuar de esa manera \cite{ma2020understanding}. El \textit{overfitting} ocurre cuando el modelo clasifica bien los datos de entrenamiento, pero no se generaliza tan bien, es decir, en los datos de validación tiene peor desempeño. \textit{Overparameterization} tiene lugar cuando hay tantos parámetros que la red es capaz de ``memorizar'' completamente los datos. Hicimos un pequeño análisis para probar esta hipótesis y no encontramos resultados que la apoyen. De hecho, con las redes que probamos, encontramos lo opuesto. En general, overfitting y overparameterization hacen que la red sea más robusta a los ataques adversarios (Figure \ref{overaparam_overfit}).
 
-Para explorar lo de overfitting, cinco redes fueron entrenadas usado distintos numeros de épocas (epochs). Enre más épocas, más probabilidad de que la red haya sido overfit. Para ver lo mismo con overparameterization, seis redes fuernon entrenadas con distinas cantidades de parámetros. Se le metieron un cierto número de capas (layers) adicionales directamente antes de la última. Cada capa adicional tenía 256 nodos. Así que, probamos redes con varios números de parámetros (Cuadro \ref{overparam_table}).
+Para explorar el overfitting, cinco redes fueron entrenadas usado distintos numeros de épocas (epochs). Enre más épocas, más probabilidad de que la red haya sido sobreajustada. Para ver lo mismo con overparameterization, seis redes fuernon entrenadas con distinas cantidades de parámetros. Se le metieron un cierto número de capas (layers) adicionales directamente antes de la última. Cada capa adicional tenía 256 nodos. Así que, probamos redes con varios números de parámetros (Cuadro \ref{overparam_table}).
 
 \begin{table}[h]
     \centering
@@ -121,7 +121,7 @@ Para explorar lo de overfitting, cinco redes fueron entrenadas usado distintos n
         \caption{}
         \label{overparam}
     \end{subfigure}
-    \caption{En (\ref{overfit}) se observa que conforme aumentamos el número de épocas (epochs), la precisión (accuracy) aumenta con respecto a cada épsilon. Asimismo en (\ref{overparam}), en general, aumentar el número de capas (layers) aumenta la precisión}
+    \caption{ a) El overfitting consiste en tener exceso de épocas. Aquí se observa que conforme aumenta el número de épocas, la precisión aumenta con respecto a cada épsilon. b) Overparameterization consiste en exceso de capas. En general, aumentar el número de capas aumenta la precisión.}
     \label{overaparam_overfit}
 \end{figure}
 

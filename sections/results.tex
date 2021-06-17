@@ -59,24 +59,24 @@ Vemos como se cambian las funcionces de transferencia de cada red cuando las ima
 
 \subsection{JPEG en CIFAR-10}
 
-Con los ataques FGM (Figura \ref{frog_cat_fgm}), que tiene norma $L_2$, y FGSM (Figura \ref{frog_cat_fgsm}), que tiene norma $L_\infty$, se tiene una clasificación errónea de la imagen \texttt{train[0]} del conjunto CIFAR-10 a partir del épsilon indicado en la figura. Como en el FGSM cada pixel tiene una mayor intensidad, no se requiere un épsilon tan grande como el de FGM. En la Figura \ref{cifar_accuracy_epsilon} se observa la eficacia de la defensa JPEG contra el ataque FGSM para distintas calidades de la imagen: mientras menor es la calidad, mayor es la precisión de la red al clasificar la imagen. Nótese que hay una desventaja en usar JPEG porque se disminuye la precisión de la red entre más baja sea la calidad (Figura \ref{cifar_jpeg_accuracy}).
+Con los ataques FGSM (Figura \ref{frog_cat_fgsm}), que tiene norma $L_\infty$, y FGM (Figura \ref{frog_cat_fgm}), que tiene norma $L_2$, se tiene una clasificación errónea de la imagen \texttt{train[0]} del conjunto CIFAR-10 a partir del épsilon indicado en la figura. Como en el FGSM cada pixel tiene una mayor intensidad, no se requiere un épsilon tan grande como el de FGM. En la Figura \ref{cifar_jpeg_accuracy} se observa la eficacia de la defensa JPEG contra el ataque FGSM para distintas calidades de la imagen: mientras menor es la calidad, mayor es la precisión de la red al clasificar la imagen. Nótese que hay una desventaja en usar JPEG porque disminuye la precisión de la red entre más baja sea la calidad (Figura \ref{cifar_accuracy_epsilon}).
 
 \begin{figure}[h!]
     \centering
     \includegraphics[width=0.8\textwidth]{images/cifar-10/frog_cat_fgsm.png}
-    \caption{FGM sobre CIFAR-10}
+    \caption{FGSM sobre CIFAR-10}
     \label{frog_cat_fgsm}
 \end{figure}
 
 \begin{figure}[h!]
     \centering
     \includegraphics[width=0.81\textwidth]{images/cifar-10/frog_cat_fgm.png}
-    \caption{Eficacia de JPEG contra FGSM en una red especifica para CIFAR-10.}
+    \caption{FGM sobre CIFAR-10}
     \label{frog_cat_fgm}
 \end{figure}
 
 
-\begin{figure}[h]
+\begin{figure}[h!]
     \centering
     \begin{subfigure}[b]{0.49\textwidth}
         \centering
@@ -98,9 +98,9 @@ Con los ataques FGM (Figura \ref{frog_cat_fgm}), que tiene norma $L_2$, y FGSM (
 
 \pagebreak
 
-\subsection{Los efectos de Overfitting y Overparameterization}
+\subsection{Los efectos de overfitting y overparameterization}
 
-Se ha sugerido que algunas propiedades de ciertas redes pueden contribuir a su susceptibilidad a los ataques adversarios. Por ejemplo, en el contexto de las imágenes médicas y sus redes respectivas, se propone que el overfitting y overparameterization pueden actuar de esa manera \cite{ma2020understanding}. El \textit{overfitting} ocurre cuando el modelo clasifica bien los datos de entrenamiento, pero no se generaliza tan bien, es decir, en los datos de validación tiene peor desempeño. \textit{Overparameterization} tiene lugar cuando hay tantos parámetros que la red es capaz de ``memorizar'' completamente los datos. Hicimos un pequeño análisis para probar esta hipótesis y no encontramos resultados que la apoyen. De hecho, con las redes que probamos, encontramos lo opuesto. En general, overfitting y overparameterization hacen que la red sea más robusta a los ataques adversarios (Figure \ref{overaparam_overfit}).
+Se ha sugerido que algunas propiedades de ciertas redes pueden contribuir a su susceptibilidad a los ataques adversarios. Por ejemplo, en el contexto de las imágenes médicas y sus respectivas redes, se propone que el sobreajuste (overfitting) y la sobreparametrización (overparameterization) pueden actuar de esa manera \cite{ma2020understanding}. El \textit{overfitting} ocurre cuando el modelo clasifica bien los datos de entrenamiento, pero no se generaliza tan bien, es decir, en los datos de validación tiene peor desempeño. La \textit{overparameterization} tiene lugar cuando hay tantos parámetros que la red es capaz de ``memorizar'' completamente los datos. Hicimos un pequeño análisis para probar esta hipótesis y no encontramos resultados que la apoyen. De hecho, con las redes que probamos, encontramos lo opuesto. En general, el overfitting y la overparameterization hacen que la red sea más robusta a los ataques adversarios (Figure \ref{overaparam_overfit}).
 
 Para explorar el overfitting, la red LeNet fue modificada al ser entrenada con 5 cantidades distintas de épocas (epochs). Mientras más épocas, mayor es la probabilidad de que la red haya sido sobreajustada (overfit). Para explorar la overparameterization, la red fue entrenada con distintas cantidades de parámetros, agregando un cierto número de capas (layers) adicionales directamente antes de la última, cada capa adicional con 256 nodos (Tabla \ref{overparam_table}).
 
@@ -124,7 +124,7 @@ Para explorar el overfitting, la red LeNet fue modificada al ser entrenada con 5
      20 Capas Adicionales & $1,335,234$  \\ 
      \hline
     \end{tabular}
-    \caption{table}
+    \caption{Número de parámetros con cada conjunto de capas adicionales en la red LeNet.}
     \label{overparam_table}
 \end{table}
 
@@ -142,7 +142,7 @@ Para explorar el overfitting, la red LeNet fue modificada al ser entrenada con 5
         \caption{}
         \label{overparam}
     \end{subfigure}
-    \caption{ a) El overfitting consiste en tener exceso de épocas. Aquí se observa que conforme aumenta el número de épocas, la precisión aumenta con respecto a cada épsilon. b) Overparameterization consiste en exceso de capas. En general, aumentar el número de capas aumenta la precisión.}
+    \caption{a) El overfitting consiste en tener exceso de épocas. Aquí se observa que conforme aumenta el número de épocas, la precisión aumenta con respecto a cada épsilon. b) Overparameterization consiste en exceso de capas. En general, aumentar el número de capas aumenta la precisión.}
     \label{overaparam_overfit}
 \end{figure}
 

@@ -44,7 +44,7 @@ La base de datos MNIST es un compendio de los dígitos del 0 al 9 en letra manus
     \label{mnist_test}
 \end{figure}
 
-De las 10,000 imágenes de evaluación, la mitad fueron escritas por estudiantes de preparatoria y la otra mitad por empleados de la oficina de censos, mientras que de las 60,000 imágenes de entrenamiento, 58,527 de los números fueron escritos por 500 estudiantes y el resto por los empleados. El tamaño de estas imágenes en blanco y negro fue normalizado a una caja de 20$\times$20 pixeles y se colocó su centro de masa en un campo de 28$\times$28 \cite{lecun2010mnist}.
+De las 10,000 imágenes de evaluación, la mitad fueron escritas por estudiantes de preparatoria y la otra mitad por empleados de la oficina de censos, mientras que de las 60,000 imágenes de entrenamiento, 58,527 de los números fueron escritos por 500 estudiantes y el resto por los empleados. El tamaño de estas imágenes en blanco y negro fue normalizado a una caja de 20$\times$20 pixeles y se colocó su centro de masa en un campo de 28$\times$28 \cite{lecun2010mnist}. Cabe recalcar que la distribución de los dígitos en MNIST no es homogénea, como puede observarse en la Figura \ref{mnist_dist}.
 
 \begin{figure}[h!]
     \centering
@@ -64,8 +64,6 @@ De las 10,000 imágenes de evaluación, la mitad fueron escritas por estudiantes
     \caption{Distribución de los dígitos en MNIST}
     \label{mnist_dist}
 \end{figure}
-
-La distribución de los dígitos en MNIST no es homogénea, como puede observarse en la Figura \ref{mnist_dist}.
 
 \subsubsection{CIFAR-10}
 Los grupos del MIT y la NYU recopilaron un conjunto de millones de diminutas imágenes en color de la web, se trata de un excelente conjunto de datos para el entrenamiento no supervisado de modelos generativos profundos. Se crearon dos juegos de etiquetas confiables: el conjunto CIFAR-10, que tiene 6000 ejemplos de cada una de 10 clases y el conjunto CIFAR-100, que tiene 600 ejemplos de cada una de 100 clases que no se superponen. Usando estas etiquetas, se mostró que el reconocimiento de objetos mejora significativamente al entrenar previamente una capa de características en un gran conjunto de imágenes diminutas sin etiquetar.

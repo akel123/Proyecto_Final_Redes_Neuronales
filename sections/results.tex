@@ -43,71 +43,60 @@ En la Figura \ref{jpeg_def} se muestra el resultado de nuestro entrenamiento de 
     \caption{Resultado de la compresión JPEG como defensa ante el ataque FGSM sobre MNIST}
     \label{jpeg_def}
 \end{figure}
-\pagebreak
-
-\subsection{JPEG en CIFAR-10}
-
-Con los ataques FGM (Figura \ref{frog_cat}), que tiene norma $L_2$, y FGSM (Figura \ref{frog_dog}), que tiene norma $L_\infty$, se tiene una clasificación errónea de la imagen \texttt{train[0]} del conjunto CIFAR-10 a partir de un épsilon de 0.01 y 0.03, respectivamente. En la Figura \ref{cifar_acc_eps} se observa la eficacia de la defensa JPEG contra el ataque FGSM para distintas calidades de la imagen: mientras menor es la calidad, mayor es la precisión de la red al clasificar la imagen.
-
-\begin{figure}[h!]
-    \centering
-    \includegraphics[width=0.8\textwidth]{images/cifar-10/frog_cat.png}
-    \caption{Caption}
-    \label{frog_cat}
-\end{figure}
-
-\begin{figure}[h!]
-    \centering
-    \includegraphics[width=0.8\textwidth]{images/cifar-10/frog_dog.png}
-    \caption{Caption}
-    \label{frog_dog}
-\end{figure}
-
-\begin{figure}[h!]
-    \centering
-    \includegraphics[width=0.5\textwidth]{images/cifar-10/cifar_acc_eps.png}
-    \caption{Caption}
-    \label{cifar_acc_eps}
-\end{figure}
-
 
 {\LARGE \textbf{to do:}}
 \begin{itemize}
     \item Carlini Wagner attack graphs
-    \item JPEG defense graphs with cifar10    
 \end{itemize}
 
 Vemos como se cambian las funcionces de transferencia de cada red cuando las imagenes pasan por compresión JPEG: frecuencia $\to$ compresión JPEG $\to$ $1^\text{er}$ capa (convolucional) $\to$ respuesta (Figura \ref{bode_gifs}). Se nota que no hay mucho cambio en LeNet para ninguna calidad de compresión. Con respecto a ResNet, sí hay más modelación con unas calidades bajas (calidad $= 7-16$), pero no vimos un gran cambio en el desempeño de la red. Cabe mencionar que las calidades más bajas ($1-5$) destruyeron completamente cada frecuencia que pasamos por la red, y por eso no hay ningún cambio en la función de transferencia para esas calidades. Pensamos que eso es un artifacto del tamaño de imagenes y no se debe tomar al pie de la letra. Asimismo, por el tamaño de las imagenes, hay baja resolución frecuencial, y eso también puede afectar los resultados. Este análisis debe de ser repedito para imagenes más grandes.
 \begin{figure}[h]
     \animategraphics[autoplay,loop, width=0.48\linewidth]{5}{images/bode_diagrams/LeNet/}{1}{100}
     \animategraphics[autoplay,loop, width=0.48\linewidth]{5}{images/bode_diagrams/ResNet/}{1}{100}
-    \caption{Esas GIFs fueron hechos de la misma manera que \ref{bode_examples}, pero las frecuencias fueron comprimpridas con JPEG antes de pasarlas por la red. }
+    \caption{Esas GIFs fueron hechas de la misma manera que \ref{bode_examples}, pero las frecuencias fueron comprimpridas con JPEG antes de pasarlas por la red. }
     \label{bode_gifs}
 \end{figure}
 
-% \begin{subfigure}[t]{0.22\textwidth}
-% \centering
-%     \includegraphics[width=\textwidth]{images/jpeg/fgsm_Le.png}
-%     \caption{Sin compresión JPEG}
-% \end{subfigure}
-% \hspace{1em}
-% \begin{subfigure}[t]{0.22\textwidth}
-% \centering
-%     \includegraphics[width=\textwidth]{images/jpeg/fgsm_jpeg20_Le.png}
-%     \caption{20\%}
-% \end{subfigure}
-% \hspace{1em}
-% \begin{subfigure}[t]{0.22\textwidth}
-% \centering
-%     \includegraphics[width=\textwidth]{images/jpeg/fgsm_jpeg1_Le.png}
-%     \caption{1\%}
-% \end{subfigure}
-% \caption{Ruido del ataque FGSM para distintas calidades en la compresión JPEG en el elemento \texttt{test[1]} de MNIST. En todos los casos, la red clasificó al 2 como un 7.}
+\subsection{JPEG en CIFAR-10}
+
+Con los ataques FGM (Figura \ref{frog_cat_fgm}), que tiene norma $L_2$, y FGSM (Figura \ref{frog_cat_fgsm}), que tiene norma $L_\infty$, se tiene una clasificación errónea de la imagen \texttt{train[0]} del conjunto CIFAR-10 a partir del épsilon indicado en la figura. Como en el FGSM cada pixel tiene una mayor intensidad, no se requiere un épsilon tan grande como el de FGM. En la Figura \ref{cifar_accuracy_epsilon} se observa la eficacia de la defensa JPEG contra el ataque FGSM para distintas calidades de la imagen: mientras menor es la calidad, mayor es la precisión de la red al clasificar la imagen. Nótese que hay una desventaja en usar JPEG porque se disminuye la precisión de la red entre más baja sea la calidad (Figura \ref{cifar_jpeg_accuracy}).
+
+\begin{figure}[h!]
+    \centering
+    \includegraphics[width=0.8\textwidth]{images/cifar-10/frog_cat_fgsm.png}
+    \caption{FGSM}
+    \label{frog_cat_fgsm}
+\end{figure}
+
+\begin{figure}[h!]
+    \centering
+    \includegraphics[width=0.81\textwidth]{images/cifar-10/frog_cat_fgm.png}
+    \caption{FGM con norma 2}
+    \label{frog_cat_fgm}
+\end{figure}
 
 
-% En la Figura \ref{Noise} se observa cómo el ruido generado por el ataque FGSM también se distorsiona conforme aumenta la compresión JPEG.
+\begin{figure}[h]
+    \centering
+    \begin{subfigure}[b]{0.49\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{images/cifar-10/cifar_epsilon_accuracy.png}
+        \caption{}
+        \label{cifar_jpeg_accuracy}
+    \end{subfigure}
+    \begin{subfigure}[b]{0.49\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{images/cifar-10/cifar_JPEG_accuracy.png}
+        \caption{}
+        \label{cifar_accuracy_epsilon}
+    \end{subfigure}
+    \caption{ }
+    \label{cifrar_accuracy}
+\end{figure}
 
 
+
+\pagebreak
 
 \subsection{Los efectos de Overfitting y Overparameterization}
 
@@ -163,4 +152,5 @@ Para explorar el overfitting, la red LeNet fue modificada al ser entrenada con 5
 \begin{itemize}
     \item Show figures from notebook of how adversarial noise attacks parts of the image that seem vulnerable (for example changing a 3$\to$8)
     \item Show Gradient-based localization of both image sets and how they change after adding adversarial noise\cite{Selvaraju_2019}
+    \item See the saliency of an attacked image
 \end{itemize}

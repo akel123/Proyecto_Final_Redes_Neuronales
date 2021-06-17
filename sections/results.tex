@@ -47,27 +47,34 @@ En la Figura \ref{jpeg_def} se muestra el resultado de nuestro entrenamiento de 
 
 \subsection{JPEG en CIFAR-10}
 
-Con los ataques FGM (Figura \ref{frog_cat}), que tiene norma $L_2$, y FGSM (Figura \ref{frog_dog}), que tiene norma $L_\infty$, se tiene una clasificación errónea de la imagen \texttt{train[0]} del conjunto CIFAR-10 a partir de un épsilon de 0.01 y 0.03, respectivamente. En la Figura \ref{cifar_acc_eps} se observa la eficacia de la defensa JPEG contra el ataque FGSM para distintas calidades de la imagen: mientras menor es la calidad, mayor es la precisión de la red al clasificar la imagen.
+Con los ataques FGSM (Figura \ref{frog_cat}), que tiene norma $L_\infty$, y FGM (Figura \ref{frog_dog}), que tiene norma $L_2$, se tiene una clasificación errónea de la imagen \texttt{train[0]} del conjunto CIFAR-10 a partir de un épsilon de 0.01 y 0.03, respectivamente. En la Figura \ref{cifar_acc_eps} se observa la eficacia de la defensa JPEG contra el ataque FGSM para distintas calidades de la imagen: mientras menor es la calidad, mayor es la precisión de la red al clasificar la imagen.
 
 \begin{figure}[h!]
     \centering
     \includegraphics[width=0.8\textwidth]{images/cifar-10/frog_cat.png}
-    \caption{Caption}
+    \caption{FGSM sobre CIFAR-10}
     \label{frog_cat}
 \end{figure}
 
 \begin{figure}[h!]
     \centering
     \includegraphics[width=0.8\textwidth]{images/cifar-10/frog_dog.png}
-    \caption{Caption}
+    \caption{FGM sobre CIFAR-10}
     \label{frog_dog}
 \end{figure}
 
 \begin{figure}[h!]
     \centering
     \includegraphics[width=0.5\textwidth]{images/cifar-10/cifar_acc_eps.png}
-    \caption{Caption}
+    \caption{Eficacia de JPEG contra FGSM en una red especifica para CIFAR-10.}
     \label{cifar_acc_eps}
+\end{figure}
+
+\begin{figure}[h!]
+    \centering
+    \includegraphics[width=0.5\textwidth]{images/CW/cw_acc_le.png}
+    \caption{Eficacia de JPEG contra Carlini-Wagner en LeNet.}
+    \label{cw_acc}
 \end{figure}
 
 

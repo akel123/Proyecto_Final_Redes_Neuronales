@@ -76,6 +76,7 @@ Con los ataques FGM (Figura \ref{frog_cat}), que tiene norma $L_2$, y FGSM (Figu
     \item Carlini Wagner attack graphs
     \item JPEG defense graphs with cifar10    
 \end{itemize}
+
 Vemos como se cambian las funcionces de transferencia de cada red cuando las imagenes pasan por compresión JPEG: frecuencia $\to$ compresión JPEG $\to$ $1^\text{er}$ capa (convolucional) $\to$ respuesta \ref{bode_gifs}. Se nota que no hay mucho cambio en LeNet para ninguna calidad de compresión. Con respecto a ResNet, sí hay más modelación con unas calidades bajas (calidad $= 7-16$), pero no vimos un gran cambio en el desempeño de la red. Cabe mencionar que las calidades más bajas ($1-5$) destruyeron completamente cada frecuencia que pasamos por la red, y por eso no hay ningún cambio en la función de transferencia para esas calidades. Pensamos que eso es un artifacto del tamaño de imagenes y no se debe tomar al pie de la letra. Asimismo, por el tamaño de las imagenes, hay baja resolución frecuencial, y eso también puede afectar los resultados. Este análisis debe de ser repedito para imagenes más grandes.
 \begin{figure}[h]
     \animategraphics[autoplay,loop, width=0.48\linewidth]{5}{images/bode_diagrams/LeNet/}{1}{100}

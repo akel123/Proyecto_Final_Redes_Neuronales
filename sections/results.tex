@@ -106,8 +106,6 @@ Utilizando LeNet, con los ataques FGSM (Figura \ref{frog_cat_fgsm}), que tiene n
         \caption{Precisión de LeNet en función de la calidad de la imagen en la compresión JPEG}
         \label{cifar_accuracy_epsilon}
     \end{subfigure}
-    \caption{Eficacia de JPEG}
-    \label{cifrar_accuracy}
     \hspace{4mm}
     \begin{subfigure}[b]{0.48\textwidth}
         \centering
@@ -115,6 +113,9 @@ Utilizando LeNet, con los ataques FGSM (Figura \ref{frog_cat_fgsm}), que tiene n
         \caption{Precisión de LeNet para distintos valores de la calidad de la imagen en la compresión JPEG}
         \label{cifar_jpeg_accuracy}
     \end{subfigure}
+
+    \caption{Eficacia de JPEG}
+    \label{cifrar_accuracy}
 \end{figure}
 
 
@@ -174,6 +175,7 @@ Para explorar el overfitting, la red LeNet fue modificada al ser entrenada con 5
 \subsection{Saliency}
 \begin{itemize}
     \item Show figures from notebook of how adversarial noise attacks parts of the image that seem vulnerable (for example changing a 3$\to$8)
+    \item "first error" images for both cifar and mnist
     \item Show Gradient-based localization of both image sets and how they change after adding adversarial noise\cite{Selvaraju_2019}
     \item See the saliency of an attacked image
 \end{itemize}

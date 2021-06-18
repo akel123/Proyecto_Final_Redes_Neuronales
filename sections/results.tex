@@ -195,6 +195,82 @@ donde $w$ es la derivada de $S_c$ con respecto de la imagen $I$ en el punto (ima
 La magnitud de la derivada nos indica cuáles son los pixeles que deben ser cambiados en la menor cantidad para afectar la puntuación de la clase en la mayor medida. Así es como se define la prominencia (saliency) \cite{simonyan2014deep}.
 
 
+\begin{figure}[h!]
+    \centering
+    \begin{subfigure}[b]{0.47\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{images/saliency/mnist/linear/4_saliency_figures.png}
+        \caption{}
+        \label{4_saliency}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}[b]{0.47\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{images/saliency/mnist/linear/4_error.png}
+        \caption{}
+        \label{4_error}
+    \end{subfigure}
+    \caption{}
+    \label{4_SAL}
+\end{figure}
+
+\begin{figure}[h!]
+    \centering
+    \begin{subfigure}[b]{0.47\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{images/saliency/mnist/linear/9_saliency_figures.png}
+        \caption{}
+        \label{9_saliency}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}[b]{0.47\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{images/saliency/mnist/linear/9_error.png}
+        \caption{}
+        \label{9_error}
+    \end{subfigure}
+    \caption{}
+    \label{9_SAL}
+\end{figure}
+
+\begin{figure}[h!]
+    \centering
+    \begin{subfigure}[b]{0.47\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{images/saliency/mnist/nonlinear/4_saliency_figures.png}
+        \caption{}
+        \label{4_saliency_nonlin}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}[b]{0.47\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{images/saliency/mnist/nonlinear/4_error.png}
+        \caption{}
+        \label{4_error_nonlin}
+    \end{subfigure}
+    \caption{}
+    \label{4_SAL_NONLIN}
+\end{figure}
+
+\begin{figure}[h!]
+    \centering
+    \begin{subfigure}[b]{0.47\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{images/saliency/mnist/nonlinear/9_saliency_figures.png}
+        \caption{}
+        \label{9_saliency_nonlin}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}[b]{0.47\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{images/saliency/mnist/nonlinear/9_error.png}
+        \caption{}
+        \label{9_error_nonlin}
+    \end{subfigure}
+    \caption{}
+    \label{9_SAL_NONLIN}
+\end{figure}
+
 
 \begin{itemize}
     \item Show figures from notebook of how adversarial noise attacks parts of the image that seem vulnerable (for example changing a 3$\to$8)

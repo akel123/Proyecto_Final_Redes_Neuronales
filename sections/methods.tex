@@ -141,22 +141,22 @@ En la Figura \ref{CW} se observa que el ataque es totalmente imperceptible para 
     \begin{subfigure}[b]{0.55\textwidth}
         \centering
         \includegraphics[width=\textwidth]{images/fgms_example.png}
-        \caption{FGSM}
+        \caption{FGSM con \texttt{epsilon = 0.066}}
         \label{fgsm_example}
     \end{subfigure}
     \begin{subfigure}[b]{0.55\textwidth}
         \centering
         \includegraphics[width=\textwidth]{images/fgm_example.png}
-        \caption{FGM}
+        \caption{FGM con \texttt{epsilon = 0.078}}
         \label{fgm_example}
     \end{subfigure}
     \begin{subfigure}[b]{0.55\textwidth}
         \centering
         \includegraphics[width=\textwidth]{images/CW_example.png}
-        \caption{CW}
+        \caption{CW (no tiene \texttt{epsilon} como argumento)}
         \label{CW_example}
     \end{subfigure}
-    \caption{Ruido de los ataques FGSM, FGM y Carlini-Wagner sobre MNIST, con los cuales un 8 es clasificado erróneamente por la red como un 3.}
+    \caption{Ruido de los ataques FGSM, FGM y Carlini-Wagner sobre MNIST, con los cuales un 8 es clasificado erróneamente por LeNet como un 3.}
     \label{attack_examples}
 \end{figure}
 

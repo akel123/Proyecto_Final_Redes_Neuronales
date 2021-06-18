@@ -47,11 +47,6 @@ En la Figura \ref{jpeg_def} se muestra el resultado de nuestro entrenamiento de 
     \label{jpeg_def}
 \end{figure}
 
-{\LARGE \textbf{to do:}}
-\begin{itemize}
-    \item Carlini Wagner attack graphs
-\end{itemize}
-
 Vemos cómo cambian las funciones de transferencia de cada red cuando las imágenes pasan por compresión JPEG: frecuencia $\to$ compresión JPEG $\to$ $1^\text{er}$ capa (convolucional) $\to$ respuesta (Figura \ref{bode_gifs}). Se nota que no hay mucho cambio en LeNet para ninguna calidad de compresión. Con respecto a ResNet, sí hay más modelación con unas calidades bajas (calidad $= 7-16$), pero no vimos un gran cambio en el desempeño de la red. Cabe mencionar que las calidades más bajas ($1-5$) destruyeron completamente cada frecuencia que pasamos por la red, y por eso no hay ningún cambio en la función de transferencia para esas calidades. Pensamos que eso es un artefacto del tamaño de las imágenes y no se debe tomar al pie de la letra. Asimismo, por el tamaño de las imágenes, hay baja resolución frecuencial, y eso también puede afectar los resultados. Este análisis debe de ser repetido para imágenes más grandes.
 \begin{figure}[h]
     \animategraphics[autoplay,loop, width=0.48\linewidth]{5}{images/bode_diagrams/LeNet/}{1}{100}

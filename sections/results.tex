@@ -62,15 +62,13 @@ Vemos cómo cambian las funciones de transferencia de cada red cuando las imáge
 
 \subsection{JPEG en CIFAR-10}
 
-Utilizando LeNet, con los ataques FGSM (Figura \ref{frog_cat_fgsm}), que tiene norma $L_\infty$, y FGM (Figura \ref{frog_cat_fgm}), que tiene norma $L_2$, se tiene una clasificación errónea de la imagen \texttt{train[0]} del conjunto CIFAR-10 a partir del épsilon indicado en la figura. Como en el FGSM cada pixel tiene una mayor intensidad, no se requiere un épsilon tan grande como el de FGM. En la Figura \ref{cifar_jpeg_accuracy} se observa la eficacia de la defensa JPEG contra el ataque FGSM para distintas calidades de la imagen: mientras menor es la calidad, mayor es la precisión de la red al clasificar la imagen. Nótese que hay una desventaja en usar JPEG porque disminuye la precisión de la red entre más baja sea la calidad (Figura \ref{cifar_accuracy_epsilon}).
-
-
+Utilizando LeNet, con los ataques FGSM (Figura \ref{frog_cat_fgsm}), que tiene norma $L_\infty$, y FGM (Figura \ref{frog_cat_fgm}), que tiene norma $L_2$, se tiene una clasificación errónea de la imagen \texttt{train[0]} del conjunto CIFAR-10 a partir del épsilon indicado en la figura. Como en el FGSM cada pixel tiene una mayor intensidad, no se requiere un épsilon tan grande como el de FGM. En la Figura \ref{cifar_accuracy_epsilon} se observa la eficacia de la defensa JPEG contra el ataque FGSM para distintas calidades de la imagen: mientras menor es la calidad, mayor es la precisión de la red al clasificar la imagen. Nótese que hay una desventaja en usar JPEG porque disminuye la precisión de la red entre más baja sea la calidad (Figura \ref{cifar_jpeg_accuracy}).
 
 \begin{figure}[h!]
     \centering
     \includegraphics[width=0.80\textwidth]{images/cifar-10/frog_cat_fgsm.png}
-    \label{frog_cat_fgsm}
     \caption{FGSM sobre CIFAR-10}
+    \label{frog_cat_fgsm}
 \end{figure}
 
 \begin{figure}[h!]
@@ -82,8 +80,28 @@ Utilizando LeNet, con los ataques FGSM (Figura \ref{frog_cat_fgsm}), que tiene n
 
 \begin{figure}[h!]
     \centering
-    \includegraphics[width=0.8\textwidth]{images/cifar-10/frog_noises.png}
-    \caption{FFT de los ruidos}
+    \begin{subfigure}[b]{0.45\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{images/cifar-10/cifar_JPEG_accuracy.png}
+        \caption{Precisión de LeNet en función de la calidad de la imagen en la compresión JPEG}
+        \label{cifar_jpeg_accuracy}
+    \end{subfigure}
+    \hspace{4mm}
+    \begin{subfigure}[b]{0.45\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{images/cifar-10/cifar_epsilon_accuracy.png}
+        \caption{Precisión de LeNet para distintos valores de la calidad de la imagen en la compresión JPEG}
+        \label{cifar_accuracy_epsilon}
+    \end{subfigure}
+
+    \caption{Eficacia de JPEG}
+    \label{cifar_accuracy}
+\end{figure}
+
+\begin{figure}[h!]
+    \centering
+    \includegraphics[width=0.6\textwidth]{images/cifar-10/frog_noises.png}
+    \caption{FFT de los ruidos de FGSM y FGM}
     \label{frog_ruidos}
 \end{figure}
 
@@ -91,36 +109,13 @@ Utilizando LeNet, con los ataques FGSM (Figura \ref{frog_cat_fgsm}), que tiene n
 \begin{figure}[h!]
     \centering
     \includegraphics[width=\textwidth]{images/cifar-10/frog_cat_fgsm_fft.png}
-    \caption{FFT de los ruidos}
+    \caption{Comparación de la FFT de la imagen original y la imagen con el ruido agregado por FGSM}
     \label{frog_cat_fft}
 \end{figure}
 
-
-
-
-\begin{figure}[h!]
-    \centering
-    \begin{subfigure}[b]{0.45\textwidth}
-        \centering
-        \includegraphics[width=\textwidth]{images/cifar-10/cifar_JPEG_accuracy.png}
-        \caption{Precisión de LeNet en función de la calidad de la imagen en la compresión JPEG}
-        \label{cifar_accuracy_epsilon}
-    \end{subfigure}
-    \hspace{4mm}
-    \begin{subfigure}[b]{0.45\textwidth}
-        \centering
-        \includegraphics[width=\textwidth]{images/cifar-10/cifar_epsilon_accuracy.png}
-        \caption{Precisión de LeNet para distintos valores de la calidad de la imagen en la compresión JPEG}
-        \label{cifar_jpeg_accuracy}
-    \end{subfigure}
-
-    \caption{Eficacia de JPEG}
-    \label{cifrar_accuracy}
-\end{figure}
-
-
-
 \pagebreak
+
+
 
 \subsection{Los efectos de overfitting y overparameterization}
 
@@ -181,12 +176,12 @@ The score of an image $S(I)$ is the output of the NN just before it gets convert
     \[S_c(I) \approx w^\top I + b,\]
     \item where $w$ is the derivative of $S_c$ with respect to the image $I$ at the point (image) $I_0$.
     \[w = \left. \frac{\partial S_c}{\partial I} \right |_{I_0}\]
-    \item the magnitude of the derivative indigates which pixels need to be chanted the least to affect the class score the most.
+    \item the magnitude of the derivative indicates which pixels need to be changed the least to affect the class score the most.
 \end{itemize}
 
 \begin{itemize}
     \item Show figures from notebook of how adversarial noise attacks parts of the image that seem vulnerable (for example changing a 3$\to$8)
-    \item "first error" images for both cifar and mnist
+    \item ``first error'' images for both cifar and mnist
     \item Show Gradient-based localization of both image sets and how they change after adding adversarial noise\cite{Selvaraju_2019}
     \item See the saliency of an attacked image
 \end{itemize}

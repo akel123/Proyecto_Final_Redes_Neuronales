@@ -1,19 +1,20 @@
 \section{Resultados}
-\subsection{Función de Transferencia de las Redes}
-Una manera útil de pensar a una red es con un punto de vista basado en teoría de control. De esta forma, construimos una función de transferencia calculando la respuesta de la red a ciertas frecuencias. 
+
+\subsection{Función de transferencia de las redes}
+
+Una manera útil de pensar a una red es con un punto de vista basado en teoría de control, a partir del cual construimos una función de transferencia calculando la respuesta de la red a ciertas frecuencias. Así se pueden ver las frecuencias a las que la red tiene mayor o menor sensibilidad.
+
 \begin{figure}[h!]
     \centering
-    \includegraphics[width=\textwidth]{images/bode_diagrams/explanation_bode.png}
-    \caption{stuff}
+    \includegraphics[width=\textwidth, trim={0 2cm 0 0},clip]{images/bode_diagrams/explanation_bode.png}
+    \caption{Diagrama de cómo se construye la función de transferencia para cierta red. Primero se generan varias frecuencias en una sola dirección (en este caso vertical) y se ingresan a la primera capa de la red. A la salida de la capa previa a la función de activación se le toma la norma $L_2$, y esa es la respuesta de la red (un escalar) para tal frecuencia.}
     \label{bode_explain}
 \end{figure}
-
-Así se puede ver las frecuencias a las que la red tiene mayor o menor sensibilidad.
 
 \begin{figure}[h!]
     \centering
     \includegraphics[width=\textwidth]{images/bode_diagrams/mnist_nets.png}
-    \caption{}
+    \caption{Funciones de transferencia para LeNet y ResNet. Las dos son más o menos igual de susceptibles a todas las frecuencias presentadas, pero ResNet sí tiene un poco de modulación negativa con cierta persistencia en las frecuencias altas y para calidades de JPEG intermedias.}
     \label{bode_examples}
 \end{figure}
 
@@ -47,7 +48,11 @@ En la Figura \ref{jpeg_def} se muestra el resultado de nuestro entrenamiento de 
     \label{jpeg_def}
 \end{figure}
 
-Vemos cómo cambian las funciones de transferencia de cada red cuando las imágenes pasan por compresión JPEG: frecuencia $\to$ compresión JPEG $\to$ $1^\text{er}$ capa (convolucional) $\to$ respuesta (Figura \ref{bode_gifs}). Se nota que no hay mucho cambio en LeNet para ninguna calidad de compresión. Con respecto a ResNet, sí hay más modelación con unas calidades bajas (calidad $= 7-16$), pero no vimos un gran cambio en el desempeño de la red. Cabe mencionar que las calidades más bajas ($1-5$) destruyeron completamente cada frecuencia que pasamos por la red, y por eso no hay ningún cambio en la función de transferencia para esas calidades. Pensamos que eso es un artefacto del tamaño de las imágenes y no se debe tomar al pie de la letra. Asimismo, por el tamaño de las imágenes, hay baja resolución frecuencial, y eso también puede afectar los resultados. Este análisis debe de ser repetido para imágenes más grandes.
+En la Figura \ref{bode_gifs} se observa cómo cambian las funciones de transferencia de cada red cuando las imágenes pasan por distintos niveles de compresión JPEG según el siguiente esquema:
+\begin{center}
+    frecuencia $\to$ compresión JPEG $\to$ $1^\text{er}$ capa (convolucional) $\to$ respuesta
+\end{center}
+Se nota que no hay mucho cambio en LeNet para ninguna calidad de compresión. Con respecto a ResNet, sí hay modulación con algunas calidades bajas, más o menos en el rango de 7 a 16, pero no se observa un gran cambio en el desempeño de la red. Cabe mencionar que las calidades más bajas ($1-5$) destruyeron completamente cada frecuencia que pasamos por la red, y por eso no hay ningún cambio en la función de transferencia para esas calidades. Pensamos que eso es un artefacto del tamaño de las imágenes y no se debe tomar al pie de la letra. Asimismo, por el tamaño de las imágenes, hay baja resolución frecuencial, y eso también puede afectar los resultados. Este análisis debe de ser repetido para imágenes más grandes.
 \begin{figure}[h]
     \animategraphics[autoplay,loop, width=0.48\linewidth]{5}{images/bode_diagrams/LeNet/}{1}{100}
     \animategraphics[autoplay,loop, width=0.48\linewidth]{5}{images/bode_diagrams/ResNet/}{1}{100}
@@ -55,7 +60,13 @@ Vemos cómo cambian las funciones de transferencia de cada red cuando las imáge
     \label{bode_gifs}
 \end{figure}
 
+
+
+\subsection{JPEG en CIFAR-10}
+
 Utilizando LeNet, con los ataques FGSM (Figura \ref{frog_cat_fgsm}), que tiene norma $L_\infty$, y FGM (Figura \ref{frog_cat_fgm}), que tiene norma $L_2$, se tiene una clasificación errónea de la imagen \texttt{train[0]} del conjunto CIFAR-10 a partir del épsilon indicado en la figura. Como en el FGSM cada pixel tiene una mayor intensidad, no se requiere un épsilon tan grande como el de FGM. En la Figura \ref{cifar_accuracy_epsilon} se observa la eficacia de la defensa JPEG contra el ataque FGSM para distintas calidades de la imagen: mientras menor es la calidad, mayor es la precisión de la red al clasificar la imagen. Nótese que hay una desventaja en usar JPEG porque disminuye la precisión de la red entre más baja sea la calidad (Figura \ref{cifar_jpeg_accuracy}).
+
+En la Figura \ref{frog_ruidos} se muestran las transformadas rápidas de Fourier (FFTs) en 2D de los ruidos generados por el FGSM y el FGM, y se observa que ambas FFTs son muy similares a pesar de que los ruidos parecen distintos por la capa gris del FGM. Esto se debe a que, con FGM, los valores de la intensidad del ruido están en el intervalo $(-1, 1)$, pero en FGSM solo pueden ser $-1$ o $1$, entonces los colores son de menor intensidad en FGM: el gris en RGB es $(r,g,b)$ cuando $r \approx g \approx b < 1$.
 
 \begin{figure}[h!]
     \centering
@@ -90,16 +101,14 @@ Utilizando LeNet, con los ataques FGSM (Figura \ref{frog_cat_fgsm}), que tiene n
     \label{cifar_accuracy}
 \end{figure}
 
-En la Figura \ref{frog_ruidos} se muestran las transformadas rápidas de Fourier (FFTs) en 2D de los ruidos generados por el FGSM y el FGM, y se observa que ambas FFTs son muy similares a pesar de que los ruidos parecen distintos por la capa gris del FGM. Esto se debe a que, con FGM, los valores de la intensidad del ruido están en el intervalo $(-1, 1)$, pero en FGSM solo pueden ser $-1$ o $1$, entonces los colores son de menor intensidad en FGM: el gris en RGB es (r,g,b) cuando r $\approx$ g $\approx$ b $<$ 1.
+En la Figura \ref{frog_cat_fft} se muestra cómo la FFT de la imagen original y la imagen atacada parecen exactamente iguales debido a que entre más pixeles y más compleja sea la imagen, la adición del ruido es más sutil, además de que el valor mínimo del épsilon adversario es menor con las imágenes de color. En cambio, con MNIST la adición del ruido sí es observable en la FFT (Figura \ref{fft_mnist}).
 
 \begin{figure}[h!]
     \centering
-    \includegraphics[width=0.6\textwidth]{images/cifar-10/frog_noises.png}
+    \includegraphics[width=0.5\textwidth]{images/cifar-10/frog_noises.png}
     \caption{La FFT de los ruidos de FGSM y FGM}
     \label{frog_ruidos}
 \end{figure}
-
-En la Figura \ref{frog_cat_fft} se muestra cómo la FFT de la imagen original y la imagen atacada parecen exactamente iguales debido a que entre más pixeles y más compleja sea la imagen, la adición del ruido es más sutil. En cambio, con MNIST la adición del ruido sí se observa en la FFT (Figura \ref{fft_mnist}).
 
 \begin{figure}[h!]
     \centering
@@ -110,13 +119,12 @@ En la Figura \ref{frog_cat_fft} se muestra cómo la FFT de la imagen original y 
 
 \begin{figure}[h!]
     \centering
-    \includegraphics[width=0.8\textwidth]{images/mnist/ffts.png}
-    \caption{the noise can be seen in the fft of the adversarial image}
+    \includegraphics[width=0.65\textwidth]{images/mnist/ffts.png}
+    \caption{Con MNIST sí se observa una pequeña contribución del ruido en la FFT de la imagen adversaria.}
     \label{fft_mnist}
 \end{figure}
-\subsection{JPEG en CIFAR-10}
 
-
+\pagebreak
 
 \subsection{Los efectos de overfitting y overparameterization}
 
@@ -125,7 +133,7 @@ Se ha sugerido que algunas propiedades de ciertas redes pueden contribuir a su s
 Para explorar el overfitting, la red LeNet fue modificada al ser entrenada con 5 cantidades distintas de épocas (epochs). Mientras más épocas, mayor es la probabilidad de que la red haya sido sobreajustada (overfit). Para explorar la overparameterization, la red fue entrenada con distintas cantidades de parámetros, agregando un cierto número de capas (layers) adicionales directamente antes de la última, cada capa adicional con 256 nodos (Tabla \ref{overparam_table}).
 
 \renewcommand{\tablename}{Tabla}
-\begin{table}[h]
+\begin{table}[h!]
     \centering
     \begin{tabular}{|c|c|}
      \hline
@@ -148,37 +156,45 @@ Para explorar el overfitting, la red LeNet fue modificada al ser entrenada con 5
     \label{overparam_table}
 \end{table}
 
-\begin{figure}[h]
+\begin{figure}[h!]
     \centering
     \begin{subfigure}[b]{0.49\textwidth}
         \centering
         \includegraphics[width=\textwidth]{images/overfit_vs_attack.png}
-        \caption{}
+        \caption{Overfitting en LeNet}
         \label{overfit}
     \end{subfigure}
     \begin{subfigure}[b]{0.49\textwidth}
         \centering
         \includegraphics[width=\textwidth]{images/overparam_vs_attack.png}
-        \caption{}
+        \caption{Overparameterization en LeNet}
         \label{overparam}
     \end{subfigure}
-    \caption{a) El overfitting consiste en tener exceso de épocas. Aquí se observa que conforme aumenta el número de épocas, la precisión aumenta con respecto a cada épsilon. b) Overparameterization consiste en exceso de capas. En general, aumentar el número de capas aumenta la precisión.}
+    \caption{a) El overfitting consiste en tener exceso de épocas. Aquí se observa que conforme aumenta el número de épocas, la precisión aumenta con respecto a cada épsilon. b) La overparameterization consiste en exceso de capas. En general, aumentar el número de capas aumenta la precisión.}
     \label{overaparam_overfit}
 \end{figure}
 
 \pagebreak
     
 \subsection{Saliency}
-The score of an image $S(I)$ is the output of the NN just before it gets converted to probabilities (this happens in softmax). 
-\begin{itemize}
-    \item Given an image $I_0$ and a class $c$, let $S_c(I_0)$ be the score of class $c$. 
-    \item We would like to rank the pixels of $I_0$ based on their influence on the score $S_c(I_0)$
-    \item We can approximate $S_c(I)$ with a linear function in the neighbourhood of $I_0$ by computing the first-order Taylor expansion:
-    \[S_c(I) \approx w^\top I + b,\]
-    \item where $w$ is the derivative of $S_c$ with respect to the image $I$ at the point (image) $I_0$.
-    \[w = \left. \frac{\partial S_c}{\partial I} \right |_{I_0}\]
-    \item the magnitude of the derivative indicates which pixels need to be changed the least to affect the class score the most.
-\end{itemize}
+La puntuación (score) $S(I)$ de una imagen es la salida de la capa de la red neuronal justo antes de que se convierta en probabilidades (esto sucede en la función de activación softmax). El procedimiento para obtener la prominencia (\textbf{saliency}) de la imagen es el siguiente:
+
+\noindent
+Dada una imagen $I_0$ y una clase $c$, sea $S_c(I_0)$ la puntuación de la clase $c$. 
+
+\noindent
+Nos gustaría rankear a los pixeles de $I_0$ con base en su influencia sobre la puntuación $S_c(I_0)$.
+
+\noindent
+Podemos aproximar $S_c(I)$ con una función lineal en la vecindad de $I_0$ al calcular la expansión de Taylor a primer orden,
+\[S_c(I) \approx w^\top I + b,\]
+donde $w$ es la derivada de $S_c$ con respecto de la imagen $I$ en el punto (imagen) $I_0$,
+\[w = \left. \frac{\partial S_c}{\partial I} \right |_{I_0}.\]
+
+\noindent
+La magnitud de la derivada nos indica cuáles son los pixeles que deben ser cambiados en la menor cantidad para afectar la puntuación de la clase en la mayor medida. Así es como se define la prominencia (saliency) \cite{simonyan2014deep}.
+
+
 
 \begin{itemize}
     \item Show figures from notebook of how adversarial noise attacks parts of the image that seem vulnerable (for example changing a 3$\to$8)

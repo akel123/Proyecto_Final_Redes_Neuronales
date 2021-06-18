@@ -55,16 +55,7 @@ Vemos cómo cambian las funciones de transferencia de cada red cuando las imáge
     \label{bode_gifs}
 \end{figure}
 
-\begin{figure}[h]
-    \centering
-    \includegraphics[width=0.8\textwidth]{images/mnist/ffts.png}
-    \caption{the noise can be seen in the fft of the adversarial image}
-\end{figure}
-\subsection{JPEG en CIFAR-10}
-
 Utilizando LeNet, con los ataques FGSM (Figura \ref{frog_cat_fgsm}), que tiene norma $L_\infty$, y FGM (Figura \ref{frog_cat_fgm}), que tiene norma $L_2$, se tiene una clasificación errónea de la imagen \texttt{train[0]} del conjunto CIFAR-10 a partir del épsilon indicado en la figura. Como en el FGSM cada pixel tiene una mayor intensidad, no se requiere un épsilon tan grande como el de FGM. En la Figura \ref{cifar_accuracy_epsilon} se observa la eficacia de la defensa JPEG contra el ataque FGSM para distintas calidades de la imagen: mientras menor es la calidad, mayor es la precisión de la red al clasificar la imagen. Nótese que hay una desventaja en usar JPEG porque disminuye la precisión de la red entre más baja sea la calidad (Figura \ref{cifar_jpeg_accuracy}).
-
-En la Figura \ref{frog_ruidos} se muestran las transformadas rápidas de Fourier (FFTs) en 2D de los ruidos generados por el FGSM y el FGM, y se observa que ambas FFTs son muy similares a pesar de que los ruidos parecen distintos por la capa gris del FGM.
 
 \begin{figure}[h!]
     \centering
@@ -99,6 +90,8 @@ En la Figura \ref{frog_ruidos} se muestran las transformadas rápidas de Fourier
     \label{cifar_accuracy}
 \end{figure}
 
+En la Figura \ref{frog_ruidos} se muestran las transformadas rápidas de Fourier (FFTs) en 2D de los ruidos generados por el FGSM y el FGM, y se observa que ambas FFTs son muy similares a pesar de que los ruidos parecen distintos por la capa gris del FGM. Esto se debe a que, con FGM, los valores de la intensidad del ruido están en el intervalo $(-1, 1)$, pero en FGSM solo pueden ser $-1$ o $1$, entonces los colores son de menor intensidad en FGM: el gris en RGB es (r,g,b) cuando r $\approx$ g $\approx$ b $<$ 1.
+
 \begin{figure}[h!]
     \centering
     \includegraphics[width=0.6\textwidth]{images/cifar-10/frog_noises.png}
@@ -106,12 +99,22 @@ En la Figura \ref{frog_ruidos} se muestran las transformadas rápidas de Fourier
     \label{frog_ruidos}
 \end{figure}
 
+En la Figura \ref{frog_cat_fft} se muestra cómo la FFT de la imagen original y la imagen atacada parecen exactamente iguales debido a que entre más pixeles y más compleja sea la imagen, la adición del ruido es más sutil. En cambio, con MNIST la adición del ruido sí se observa en la FFT (Figura \ref{fft_mnist}).
+
 \begin{figure}[h!]
     \centering
     \includegraphics[width=\textwidth]{images/cifar-10/frog_cat_fgsm_fft.png}
     \caption{Comparación de la FFT de la imagen original y de la imagen con el ruido agregado por FGSM}
     \label{frog_cat_fft}
 \end{figure}
+
+\begin{figure}[h!]
+    \centering
+    \includegraphics[width=0.8\textwidth]{images/mnist/ffts.png}
+    \caption{the noise can be seen in the fft of the adversarial image}
+    \label{fft_mnist}
+\end{figure}
+\subsection{JPEG en CIFAR-10}
 
 
 

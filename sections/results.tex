@@ -192,7 +192,11 @@ donde $w$ es la derivada de $S_c$ con respecto de la imagen $I$ en el punto (ima
 \[w = \left. \frac{\partial S_c}{\partial I} \right |_{I_0}.\]
 
 \noindent
-La magnitud de la derivada nos indica cuáles son los pixeles que deben ser cambiados en la menor cantidad para afectar la puntuación de la clase en la mayor medida. Así es como se define la prominencia (saliency) \cite{simonyan2014deep}.
+La magnitud de la derivada nos indica cuáles son los pixeles que deben ser cambiados en la menor cantidad para afectar la puntuación de la clase en la mayor medida \cite{simonyan2014deep}. Es decir, la prominencia (saliency) $M$ se define
+
+\[M_{ij} = | w_{i,j}|\]
+y para datos multi-canal (por ejemplo RGB), se toma el máximo valor de los canales,
+\[M_{ij} = \max_c{|w_{i,j,c}|}\]
 
 
 \begin{figure}[h!]

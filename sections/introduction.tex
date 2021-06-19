@@ -8,7 +8,7 @@ Cabe mencionar la diferencia entre los ataques de caja blanca y caja negra. En e
 
 Desde el descubrimiento de esa vulnerabilidad que tienen las DNN, se han diseñado defensas para tratar de combatir los ataques. Aunque ninguna defensa funciona para resistir completamente los ataques, muchas sí tienen efecto, y vale la pena explorar qué propiedades contribuyen a su éxito. Al igual que los ataques, las defensas también se pueden categorizar en dos modalidades. Las del primer tipo modifican el entrenamiento de la red para que la función de pérdida se vuelva más suave. Entre más suave esa función, más difícil será para que las perturbaciones pequeñas hagan cambios grandes. Un ejemplo conocido de este tipo es el entrenamiento adversario \cite{goodfellow2015explaining, Shaham_2018, szegedy2014intriguing}. Las defensas del segundo tipo, y la que se estudia en este artículo, no modifican el entrenamiento ni la arquitectura, sino que utilizan un preprocesamiento en las imágenes de entrada. La defensa que se utiliza en este artículo es compresión JPEG \cite{das2017keeping}.
 
-Para estudiar la interpretabilidad de los ataques, se usará análisis de frecuencia y también la prominencia (saliency) \cite{simonyan2014deep}
+Para estudiar la interpretabilidad de los ataques, se usará análisis de frecuencias y también la prominencia (saliency) \cite{simonyan2014deep}
 
 
 

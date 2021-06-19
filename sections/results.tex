@@ -177,6 +177,24 @@ Para explorar el overfitting, la red LeNet fue modificada al ser entrenada con 5
 \pagebreak
     
 \subsection{Saliency}
+
+\begin{figure}[h!]
+    % \centering
+    \animategraphics[autoplay,loop, width=0.33\linewidth]{5}{images/saliency/cat_saliency/adversarial/}{300}{399}
+    \animategraphics[autoplay,loop, width=0.33\linewidth]{5}{images/saliency/cat_saliency/saliency/}{200}{299}
+    \animategraphics[autoplay,loop, width=0.33\linewidth]{5}{images/saliency/cat_saliency/overlay/}{100}{199}
+    \caption{GIF del saliency en una imagen de CIFAR-10 conforme aumenta $\varepsilon$ de 0 a 0.099 en el FGSM}
+    \label{cat_sal}
+\end{figure}
+\begin{figure}[h!]
+    % \centering
+    \animategraphics[autoplay,loop, width=0.33\linewidth]{5}{images/saliency/frog_saliency/adversarial/}{300}{399}
+    \animategraphics[autoplay,loop, width=0.33\linewidth]{5}{images/saliency/frog_saliency/saliency/}{200}{299}
+    \animategraphics[autoplay,loop, width=0.33\linewidth]{5}{images/saliency/frog_saliency/overlay/}{100}{199}
+    \caption{GIF del saliency en otra imagen de CIFAR-10 conforme aumenta $\varepsilon$ de 0 a 0.099 en el FGSM}
+    \label{frog_sal}
+\end{figure}
+
 La puntuación (score) $S(I)$ de una imagen es la salida de la capa de la red neuronal justo antes de que se convierta en probabilidades (esto sucede en la función de activación softmax). El procedimiento para obtener la prominencia (\textbf{saliency}) de la imagen es el siguiente:
 
 \noindent
@@ -190,31 +208,28 @@ Podemos aproximar $S_c(I)$ con una función lineal en la vecindad de $I_0$ al ca
 \[S_c(I) \approx w^\top I + b,\]
 donde $w$ es la derivada de $S_c$ con respecto de la imagen $I$ en el punto (imagen) $I_0$,
 \[w = \left. \frac{\partial S_c}{\partial I} \right |_{I_0}.\]
-
 \noindent
 La magnitud de la derivada nos indica cuáles son los pixeles que deben ser cambiados en la menor cantidad para afectar la puntuación de la clase en la mayor medida \cite{simonyan2014deep}. Es decir, la prominencia (saliency) $M$ se define como
-
 \[M_{ij} = | w_{i,j}|\]
 y para datos multi-canal (por ejemplo RGB), se toma el máximo valor de los canales,
 \[M_{ij} = \max_c{|w_{i,j,c}|}\]
-
-
+\vspace{-1cm}
 \begin{figure}[h!]
     \centering
     \begin{subfigure}[b]{0.47\textwidth}
         \centering
         \includegraphics[width=\textwidth]{images/saliency/mnist/linear/4_saliency_figures.png}
-        \caption{}
+        \caption{Saliency y gradient del promedio de las imágenes con 4}
         \label{4_saliency}
     \end{subfigure}
     \hfill
     \begin{subfigure}[b]{0.47\textwidth}
         \centering
         \includegraphics[width=\textwidth]{images/saliency/mnist/linear/4_error.png}
-        \caption{}
+        \caption{Distribución de la clasificación del promedio del 4}
         \label{4_error}
     \end{subfigure}
-    \caption{}
+    \caption{Comparación del saliency y el gradient del promedio de las imágenes con 4 del conjunto \texttt{test} de MNIST junto con la distribución de la clasificación, empleando LeNet}
     \label{4_SAL}
 \end{figure}
 
@@ -222,37 +237,18 @@ y para datos multi-canal (por ejemplo RGB), se toma el máximo valor de los cana
     \centering
     \begin{subfigure}[b]{0.47\textwidth}
         \centering
-        \includegraphics[width=\textwidth]{images/saliency/mnist/linear/9_saliency_figures.png}
-        \caption{}
-        \label{9_saliency}
-    \end{subfigure}
-    \hfill
-    \begin{subfigure}[b]{0.47\textwidth}
-        \centering
-        \includegraphics[width=\textwidth]{images/saliency/mnist/linear/9_error.png}
-        \caption{}
-        \label{9_error}
-    \end{subfigure}
-    \caption{}
-    \label{9_SAL}
-\end{figure}
-
-\begin{figure}[h!]
-    \centering
-    \begin{subfigure}[b]{0.47\textwidth}
-        \centering
         \includegraphics[width=\textwidth]{images/saliency/mnist/nonlinear/4_saliency_figures.png}
-        \caption{}
+        \caption{Saliency y gradient del promedio de las imágenes con 4}
         \label{4_saliency_nonlin}
     \end{subfigure}
     \hfill
     \begin{subfigure}[b]{0.47\textwidth}
         \centering
         \includegraphics[width=\textwidth]{images/saliency/mnist/nonlinear/4_error.png}
-        \caption{}
+        \caption{Distribución de la clasificación del promedio del 4}
         \label{4_error_nonlin}
     \end{subfigure}
-    \caption{}
+    \caption{Comparación del saliency y el gradient del promedio de las imágenes con 4 del conjunto \texttt{test} de MNIST junto con la distribución de la clasificación, empleando ResNet}
     \label{4_SAL_NONLIN}
 \end{figure}
 
@@ -260,32 +256,42 @@ y para datos multi-canal (por ejemplo RGB), se toma el máximo valor de los cana
     \centering
     \begin{subfigure}[b]{0.47\textwidth}
         \centering
+        \includegraphics[width=\textwidth]{images/saliency/mnist/linear/9_saliency_figures.png}
+        \caption{Saliency y gradient del promedio de las imágenes con 9}
+        \label{9_saliency}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}[b]{0.47\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{images/saliency/mnist/linear/9_error.png}
+        \caption{Distribución de la clasificación del promedio del 9}
+        \label{9_error}
+    \end{subfigure}
+    \caption{Comparación del saliency y el gradient del promedio de las imágenes con 9 del conjunto \texttt{test} de MNIST junto con la distribución de la clasificación, empleando LeNet}
+    \label{9_SAL}
+\end{figure}
+
+\begin{figure}[h!]
+    \centering
+    \begin{subfigure}[b]{0.47\textwidth}
+        \centering
         \includegraphics[width=\textwidth]{images/saliency/mnist/nonlinear/9_saliency_figures.png}
-        \caption{}
+        \caption{Saliency y gradient del promedio de las imágenes con 9}
         \label{9_saliency_nonlin}
     \end{subfigure}
     \hfill
     \begin{subfigure}[b]{0.47\textwidth}
         \centering
         \includegraphics[width=\textwidth]{images/saliency/mnist/nonlinear/9_error.png}
-        \caption{}
+        \caption{Distribución de la clasificación del promedio del 9}
         \label{9_error_nonlin}
     \end{subfigure}
-    \caption{}
+    \caption{Comparación del saliency y el gradient del promedio de las imágenes con 9 del conjunto \texttt{test} de MNIST junto con la distribución de la clasificación, empleando ResNet}
     \label{9_SAL_NONLIN}
 \end{figure}
 
-\begin{figure}[h]
-    % \centering
-    \animategraphics[autoplay,loop, width=0.33\linewidth]{5}{images/saliency/cat_saliency/adversarial/}{300}{399}
-    \animategraphics[autoplay,loop, width=0.33\linewidth]{5}{images/saliency/cat_saliency/saliency/}{200}{299}
-    \animategraphics[autoplay,loop, width=0.33\linewidth]{5}{images/saliency/cat_saliency/overlay/}{100}{199}
-    \caption{}
-\end{figure}
-\begin{figure}[h]
-    % \centering
-    \animategraphics[autoplay,loop, width=0.33\linewidth]{5}{images/saliency/frog_saliency/adversarial/}{300}{399}
-    \animategraphics[autoplay,loop, width=0.33\linewidth]{5}{images/saliency/frog_saliency/saliency/}{200}{299}
-    \animategraphics[autoplay,loop, width=0.33\linewidth]{5}{images/saliency/frog_saliency/overlay/}{100}{199}
-    \caption{}
-\end{figure}
+En las figuras \ref{cat_sal} y \ref{frog_sal} se muestran dos GIFs con la respuesta del saliency conforme aumenta $\varepsilon$ de 0.000 a 0.099 en el FGSM. Se observa que los máximos del saliency no parecen tener una ubicación particularmente significativa para el reconocimiento de la imagen, lo cual resulta contrario a lo esperado.
+
+En las figuras \ref{4_SAL}, \ref{4_SAL_NONLIN}, \ref{9_SAL} y \ref{4_SAL_NONLIN} se muestra el saliency y el gradiente de los promedios de todas las imágenes con 4 y 9 de MNIST, junto con la probabilidad de distribución de la clasificación de cada uno. En las figuras \ref{4_SAL} y \ref{9_SAL} se empleó LeNet y en las \ref{4_SAL_NONLIN} y \ref{9_SAL_NONLIN} se empleó ResNet. Resulta interesante que en el caso del 4, LeNet lo clasificó mayormente como un 9, mientras que ResNet lo clasificó en primer lugar como 7 y en segundo lugar como 3, estos tres dígitos como opciones razonables para que una persona confunda al 4, pero en especial el 9, por lo que concluimos que, en este caso, LeNet tuvo un mejor desempeño que ResNet. Se observa además que en los máximos de saliency se encuentran en la parte superior del 4, que es justo la región en la cual, si cubriéramos ese hueco, el 4 se convertiría en un 9. En el caso del gradiente, tanto con LeNet como con ResNet, los máximos también se concentran en la parte superior del 4, donde de nuevo LeNet tiene un patrón más definido. Los mínimos del gradiente con LeNet se ubican en las esquinas del cuadrado que conforma la mitad superior del 4, mientras que con ResNet se ubican principalmente en la barra de en medio del 4, lo cual concuerda con la imagen del promedio de todos los dígitos 4 de MNIST.
+
+En el caso del 9, se observa justo lo mismo, que el saliency se concentra en la parte superior del 9, que es la región en la cual, al remover esa parte, el 9 se convertiría en un 4. Esto ocurre tanto con LeNet como con ResNet, sin embargo, LeNet efectivamente lo clasificó en una clara mayoría como un 4, de nuevo con un mejor desempeño que ResNet, la cual lo clasificó mayormente como 7, seguido de 3 (al igual que en la clasificación del 4), seguido ahora sí por el 4. Es interesante que con el 9 hubo mayor concordancia entre LeNet y ResNet que con el 4, pues LeNet también tuvo clasificaciones de 7, 3 y 5, donde el 8 resulta ser la única variante. En cuanto al gradiente, el máximo con LeNet es claramente la parte inferior del 9, mientras que con ResNet los máximos se distribuyen alrededor del centro del 9, lo cual no parece ofrecer información importante y además no coincide con lo que se observa en el gradiente del 4.

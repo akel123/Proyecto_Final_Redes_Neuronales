@@ -2,7 +2,7 @@
 
 \subsection{Función de transferencia de las redes}
 
-Una manera útil de pensar a una red es con un punto de vista basado en teoría de control, a partir del cual construimos una función de transferencia calculando la respuesta de la red a ciertas frecuencias. Así se pueden ver las frecuencias a las que la red tiene mayor o menor sensibilidad.
+Una manera útil de pensar a una red es con un punto de vista basado en teoría de control, a partir del cual construimos una función de transferencia calculando la respuesta de la red a ciertas frecuencias. Así se pueden determinar las frecuencias en las que la red tiene mayor o menor sensibilidad.
 
 \begin{figure}[h!]
     \centering
@@ -18,7 +18,35 @@ Una manera útil de pensar a una red es con un punto de vista basado en teoría 
     \label{bode_examples}
 \end{figure}
 
+En un experimento adicional, entrenamos 100 veces la misma red (LeNet) y comparamos la accuracy en cada entrenamiento como respuesta al ataque FGSM (Figura \ref{networks_sample}). Se observa que hay mucha variabilidad en el desempeño de las 100 redes generadas con la misma arquitectura. Vemos que el promedio de las funciones de transferencia de las 10 redes con el peor desempeño es mucho mas plana que el de las 10 mejores (Figuras \ref{bode_average_bad} y \ref{bode_average_good}). En la Figura \ref{bode_moving_average_gif} se muestra un GIF en el que se puede ver cómo cambia la función de transferencia al mover el promedio a lo largo de la distribución de las redes.
 
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.4\textwidth]{images/bode_diagrams/redes_sample.png}
+    \caption{Accuracy de los 100 entrenamientos para LeNet sometiendo las imágenes de MNIST al ataque FGSM con distintos épsilons.}
+    \label{networks_sample}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\textwidth]{images/bode_diagrams/average_bad.png}
+    \caption{Promedio de las funciones de transferencia de las 10 redes con el peor desempeño (en rojo en la gráfica de la izquierda) con respecto a los ataques.}
+    \label{bode_average_bad}
+\end{figure}
+\begin{figure}[H]
+    \centering
+        \includegraphics[width=\textwidth]{images/bode_diagrams/average_good.png}
+        \caption{Promedio de las funciones de transferencia de las 10 redes con el mejor desempeño (en verde en la gráfica de la izquierda) con respecto a los ataques.}
+    \label{bode_average_good}
+\end{figure}
+\begin{figure}[H]
+    \centering
+    \animategraphics[autoplay,loop, width=\linewidth]{7}{images/bode_diagrams/bode_moving_average/}{0}{90}
+    \caption{Este GIF muestra cómo cambia la función de transferencia conforme el promedio móvil de 10 redes avanza en accuracy en orden ascendente.}
+    \label{bode_moving_average_gif}
+\end{figure}
+
+\pagebreak
 
 \subsection{¿Qué hace la defensa de JPEG?}
 
@@ -50,7 +78,7 @@ En la Figura \ref{jpeg_def} se muestra el resultado de nuestro entrenamiento de 
 
 En la Figura \ref{bode_gifs} se observa cómo cambian las funciones de transferencia de cada red cuando las imágenes pasan por distintos niveles de compresión JPEG según el siguiente esquema:
 \begin{center}
-    frecuencia $\to$ compresión JPEG $\to$ $1^\text{er}$ capa (convolucional) $\to$ respuesta
+    frecuencia $\to$ compresión JPEG $\to$ $1^\text{era}$ capa (convolucional) $\to$ respuesta
 \end{center}
 Se nota que no hay mucho cambio en LeNet para ninguna calidad de compresión. Con respecto a ResNet, sí hay modulación con algunas calidades bajas, más o menos en el rango de 7 a 16, pero no se observa un gran cambio en el desempeño de la red. Cabe mencionar que las calidades más bajas ($1-5$) destruyeron completamente cada frecuencia que pasamos por la red, y por eso no hay ningún cambio en la función de transferencia para esas calidades. Pensamos que eso es un artefacto del tamaño de las imágenes y no se debe tomar al pie de la letra. Asimismo, por el tamaño de las imágenes, hay baja resolución frecuencial, y eso también puede afectar los resultados. Este análisis debe de ser repetido para imágenes más grandes.
 \begin{figure}[h]

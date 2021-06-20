@@ -80,7 +80,7 @@ El conjunto de datos se divide en cinco lotes de entrenamiento y un lote de prue
 \end{figure}
 
 Las 10 clases de CIFAR-10 se encuentran en orden alfabético en la base de datos y son:
-% \begin{multicols}{5}
+\begin{multicols}{5}
 \begin{enumerate}
     \item airplane
     \item automobile
@@ -93,7 +93,7 @@ Las 10 clases de CIFAR-10 se encuentran en orden alfabético en la base de datos
     \item ship
     \item truck
 \end{enumerate}
-% \end{multicols}
+\end{multicols}
 
 \pagebreak
 
@@ -115,7 +115,7 @@ Donde $p \in \mathbb{N} \cup \{\infty\}$ y $\operatorname{grad} = \nabla_x J(\th
 \end{enumerate}
 
 
-\subsubsection{Carlini \& Wagner}
+\subsubsection{Carlini \& Wagner con norma $L_2$}
 Nicholas Carlini y David Wagner \cite{carlini2017evaluating} propusieron en 2017 un método para encontrar ejemplos adversarios que tuvieran poca distorsión en la norma $L^2$. Dada $x$, se escoge una clase $t$ y se busca la $\omega$ que resuelva
 \begin{equation*}
     \text{minimize} \quad \Big\lVert \dfrac{1}{2}\big(\tanh(\omega) + 1\big) - x \Big\rVert^2 + c\cdot f\bigg(\dfrac{1}{2}\big(\tanh(\omega) + 1\big)\bigg)
@@ -126,12 +126,19 @@ con $f$ definida como
 \end{equation*}
 Esta $f$ está basada en una función objetivo en la que se controla la confianza con la que ocurre una clasificación errónea al ajustar el valor de $\kappa$. El parámetro $\kappa$ sugiere a quien esté resolviendo el problema encontrar una instancia adversaria $x'$ que sea clasificada con mucha confianza como la clase $t$. Ellos toman $\kappa = 0$. $Z(x)$ es el logit para $x$, es decir la pre-activación de la capa de salida softmax.
 
-En la Figura \ref{CW} se observa que el ataque es totalmente imperceptible para nosotros. Aunque este ataque puede ser dirigido, se usa de la forma no dirigida en este reporte: en la Figura \ref{attack_examples} se muestra el tipo de ruido que generan los ataques FGSM, FGM y Carlini-Wagner, los cuales son cada vez más sutiles en ese respectivo orden, y con esos tres ataques se logra que la red clasifique erróneamente un 8 por un 3.
+En la Figura \ref{CW} se observa que los ataques con norma $L_2$ y norma $L_\infty$ son prácticamente imperceptibles para nosotros, mientras que con el de norma $L_0$ sí se observan algunos pixeles modificados. Aunque este ataque puede ser dirigido, se usa de la forma no dirigida en este trabajo. En la Figura \ref{attack_examples} se muestra el tipo de ruido que generan los ataques FGSM, FGM y Carlini-Wagner, los cuales son cada vez más sutiles en ese respectivo orden. Con esos tres ataques se logra que la red clasifique erróneamente un 8 por un 3.
+
+% \begin{figure}[h!]
+%     \centering
+%     \includegraphics[width=0.5\textwidth]{images/CW/CW_L2.png}
+%     \caption{Ataque de Carlini \& Wagner con la norma $L^2$ sobre MNIST aplicando un ataque dirigido para cada par fuente/objetivo (source/target) \cite{carlini2017evaluating}.}
+%     \label{CW}
+% \end{figure}
 
 \begin{figure}[h!]
     \centering
-    \includegraphics[width=0.5\textwidth]{images/CW/CW_L2.png}
-    \caption{Ataque de Carlini \& Wagner con la norma $L^2$ sobre MNIST aplicando un ataque dirigido para cada par fuente/objetivo (source/target) \cite{carlini2017evaluating}.}
+    \includegraphics[width=0.43\textwidth]{images/CW/CW_norms.png}
+    \caption{Los ataques diseñados por Carlini \& Wagner con cada una de las 3 normas que emplearon: $L^2$, $L_\infty$ y $L_0$, mostrados en ese orden en cada columna, sobre MNIST y sobre CIFAR-10. La imagen de cada renglón es la primera de su clase en el conjunto de evaluación. Dada la etiqueta correcta $l$, todas las clasificaciones (erróneas) en presencia de los ataques fueron $l+1\ (\text{mod}\ 10)$, i.e. fueron clasificadas con la etiqueta posterior a la correcta \cite{carlini2017evaluating}.}
     \label{CW}
 \end{figure}
 
@@ -158,6 +165,8 @@ En la Figura \ref{CW} se observa que el ataque es totalmente imperceptible para 
     \caption{Ruido de los ataques FGSM, FGM y Carlini-Wagner sobre MNIST, con los cuales un 8 es clasificado erróneamente por LeNet como un 3.}
     \label{attack_examples}
 \end{figure}
+
+
 
 \subsection{Defensas}
 
